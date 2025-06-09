@@ -1,0 +1,28 @@
+.home-page {
+    display: flex;
+    min-height: 100vh;
+    background-color: #fff;
+
+    // Left sidebar
+    > :first-child {
+        width: 335px;
+        flex-shrink: 0;
+        background-color: #fafafa;
+
+        @media (max-width: 1024px) {
+            width: 80px;
+        }
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    // Main content
+    .main-content {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto auto auto;
+    }
+
+}
