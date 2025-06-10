@@ -1,0 +1,54 @@
+.sidebar-menu {
+    border-right: 1px solid #dbdbdb;
+    display: grid;
+    font-size: 16px;
+    grid-template-rows: 80px 1fr 10px;
+    height: 100vh;
+    padding: 8px 12px 20px;
+    z-index: 11;
+
+    .nav {
+        display: flex;
+        flex-direction: column;
+        color: black;
+
+        a {
+            border-radius: 8px;
+            color: $clr1;
+            cursor: pointer;
+            margin: 4px 0;
+            padding: 12px;
+
+            .content {
+                display: flex;
+                gap: 16px;
+                transition: transform 0.1s ease, opacity 0.1s ease;
+            }
+
+        }
+
+        a:last-child {
+            margin-top: auto;
+        }
+
+        a.active {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        a:active .content {
+            transform: scale(0.99);
+            opacity: 0.6;
+        }
+
+        a:hover {
+            background-color: #ebebeb;
+        }
+    }
+
+    .logo {
+        line-height: 18px;
+        padding: 25px 12px 16px;
+        margin: 0 0 19px;
+    }
+}
