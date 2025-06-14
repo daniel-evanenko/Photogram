@@ -1,7 +1,6 @@
 import { Avatar } from "@mui/material";
 import React from "react";
 import { ReactSVG } from "react-svg";
-import { LongTxt } from "./LongText";
 import { makeLorem } from "../services/util.service";
 import { StoryDescription } from "./StoryDescription";
 

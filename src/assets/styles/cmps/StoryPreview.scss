@@ -8,6 +8,11 @@
     color: $clr1;
     width: 470px;
 
+    svg:hover {
+        opacity: 0.6;
+        cursor: pointer;
+    }
+
     header {
         display: flex;
         align-items: center;
@@ -35,8 +40,6 @@
         .story-actions {
             display: flex;
             padding: 12px 0;
-
-
 
             div {
                 display: flex;
