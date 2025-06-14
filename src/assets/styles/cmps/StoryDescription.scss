@@ -1,0 +1,31 @@
+.post-description {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    .username {
+        font-weight: 600;
+        margin-right: 4px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .show-more-btn {
+        background: none;
+        border: none;
+        color: #737373;
+        font-weight: 400;
+        font-size: 0.9rem;
+        margin-left: 5px;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    a {
+        color: #00376b;
+        text-decoration: none;
+        font-weight: 500;
+    }
+}

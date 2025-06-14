@@ -19,7 +19,7 @@ export function makeLorem(size = 100) {
     return txt
 }
 
-export function getRandomIntInclusive(min, max) {
+export function getRandomIntInclusive(min: number, max: number) {
     min = Math.ceil(min)
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive 
@@ -35,19 +35,19 @@ export function randomPastTime() {
     return Date.now() - pastTime
 }
 
-export function debounce(func, timeout = 300) {
-    let timer
-    return (...args) => {
+export function debounce(func: { apply: (arg0: any, arg1: any[]) => void }, timeout = 300) {
+    let timer: number | undefined
+    return (...args: any[]) => {
         clearTimeout(timer)
         timer = setTimeout(() => { func.apply(this, args) }, timeout)
     }
 }
 
-export function saveToStorage(key, value) {
+export function saveToStorage(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value))
 }
 
-export function loadFromStorage(key) {
+export function loadFromStorage(key: string) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
