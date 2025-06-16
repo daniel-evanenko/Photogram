@@ -18,7 +18,7 @@ function getDefaultFilter() {
 }
 
 const service = VITE_LOCAL === 'true' ? local : remote
-export const storyService = { getEmptyCar: getEmptyStory, getDefaultFilter, ...service }
+export const storyService = { getEmptyStory, getDefaultFilter, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local
