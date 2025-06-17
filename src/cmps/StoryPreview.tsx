@@ -4,9 +4,11 @@ import { formatTimeAgo } from "../services/util.service";
 import { StoryDescription } from "./StoryDescription";
 import { Story } from "../types/types";
 import React from "react";
+import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 
 export function StoryPreview({ story }: { story: Story }) {
     const likes = story.likedBy.length;
+    const comments = story.comments.length;
 
     return (
         <article className="story-preview">
@@ -42,6 +44,27 @@ export function StoryPreview({ story }: { story: Story }) {
                 <div className="likes">{likes} likes</div>
 
                 <StoryDescription fullname={story.by.fullname} text={story.txt} />
+
+
+                <div className="comments">
+                    {comments > 0 && <div className="comment-tag">
+                        <a>View {comments >= 5 ? 'all' : ''} {comments} comments</a>
+                    </div>}
+                    <div>
+                    </div>
+                </div>
+
+                <div>
+                    <form className="comments-form">
+                        <div className="input-container">
+                            <input type="text" placeholder="Add a comment..." />
+                            <button type="button" className="input-button">Post</button>
+                        </div>
+                        <button type="button" className="emoji-button" aria-label="Add emoji">
+                            <SentimentSatisfiedOutlinedIcon sx={{ width: 13, height: 13, color: '#737373' }} />
+                        </button>
+                    </form>
+                </div>
             </footer>
         </article>
     );

@@ -82,5 +82,65 @@
             font-weight: 600;
             margin-bottom: 4px;
         }
+
+        .comments {
+            margin-block: 8px;
+
+            a {
+                color: $clr2;
+            }
+        }
+
+        .comments-form {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+
+            .input-container {
+                position: relative;
+                flex-grow: 1;
+
+                input {
+                    border: none;
+                    outline: none;
+                    width: 100%;
+                    font-size: 14px;
+                    background-color: transparent;
+                    padding: 0 50px 0px 0px;
+                }
+
+                .input-button {
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: none;
+                    border: none;
+                    color: $clr5;
+                    font-weight: 600;
+                    cursor: pointer;
+                    font-size: 12px;
+
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: opacity 0.2s ease, visibility 0.2s ease;
+                }
+
+                input:not(:placeholder-shown)+.input-button {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+
+            .emoji-button {
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                padding: 0;
+                margin-right: 11px;
+            }
+        }
     }
 }
