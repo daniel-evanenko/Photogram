@@ -1,9 +1,10 @@
 
-import { storageService } from '../async-storage.service'
-import { makeId } from '../util.service'
+import { storageService } from '../async-storage.service.js'
+import { loadFromStorage, makeId, saveToStorage } from '../util.service'
 import { userService } from '../user'
 
 const STORAGE_KEY = 'story'
+_fetchStories()
 
 export const storyService = {
     query,
@@ -13,22 +14,33 @@ export const storyService = {
 }
 window.cs = storyService
 
-
-async function query(filterBy = {}) {
-    var storys = await storageService.query(STORAGE_KEY)
-    return storys
+async function _fetchStories() {
+    const data = await loadFromStorage(STORAGE_KEY)
+    if (!data || !data.length) {
+        let response = await fetch('/public/data/tempStoryData.json')
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        response = await response.json()
+        saveToStorage(STORAGE_KEY, response)
+    }
 }
 
-function getById(storyId) {
+async function query(filterBy = {}) {
+    var stories = await storageService.query(STORAGE_KEY)
+    return stories
+}
+
+function getById(storyId: any) {
     return storageService.get(STORAGE_KEY, storyId)
 }
 
-async function remove(storyId) {
+async function remove(storyId: any) {
     // throw new Error('Nope')
     await storageService.remove(STORAGE_KEY, storyId)
 }
 
-async function save(story) {
+async function save(story: { _id: any; txt: any; imgUrl: any }) {
     var savedstory
     if (story._id) {
         const storyToSave = {

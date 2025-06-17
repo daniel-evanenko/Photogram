@@ -1,49 +1,48 @@
 import { Avatar } from "@mui/material";
-import React from "react";
 import { ReactSVG } from "react-svg";
-import { makeLorem } from "../services/util.service";
+import { formatTimeAgo } from "../services/util.service";
 import { StoryDescription } from "./StoryDescription";
+import { Story } from "../types/types";
+import React from "react";
 
-export function StoryPreview() {
-
-    const lorem = makeLorem()
+export function StoryPreview({ story }: { story: Story }) {
+    const likes = story.likedBy.length;
 
     return (
         <article className="story-preview">
             <header className="story-header">
                 <div className="user-info">
-                    <Avatar></Avatar>
-                    <span>username</span>
-                    <span> . 1h</span>
+                    <Avatar src={story.by.imgUrl} alt={story.by.fullname} sx={{ width: 32, height: 32 }} />
+                    <div className="user-meta">
+                        <span className="fullname">{story.by.fullname}</span>
+                        <span className="time-ago">• {formatTimeAgo(story.createdAt)}</span>
+                    </div>
                 </div>
-                <ReactSVG src="/public/icons/more.svg"></ReactSVG>
+                <button className="icon-button" aria-label="More options">
+                    <ReactSVG src="/icons/more.svg" />
+                </button>
             </header>
-            <main>
-                <img className="story-img" src="/public/img/download.jpeg"></img>
+
+            <main className="story-main">
+                <img className="story-img" src={story.imgUrl} alt="Story visual content" />
             </main>
-            <footer>
+
+            <footer className="story-footer">
                 <div className="story-actions">
-                    <div>
-                        <ReactSVG src="/public/icons/heart.svg"></ReactSVG>
-                        <ReactSVG src="/public/icons/comment.svg"></ReactSVG>
-                        <ReactSVG src="/public/icons/share.svg"></ReactSVG>
+                    <div className="left-actions">
+                        <ReactSVG src="/icons/heart.svg" />
+                        <ReactSVG src="/icons/comment.svg" />
+                        <ReactSVG src="/icons/share.svg" />
                     </div>
-                    <div className="save-action">
-                        <ReactSVG src="/public/icons/save.svg"></ReactSVG>
-                    </div>
-                </div>
-                <div>
-                    <span className="likes">39 likes</span>
-                </div>
-                <div>
-                    <StoryDescription
-                        username="guest"
-                        text={lorem}
-                    />
+                    <button className="save-action" aria-label="Save story">
+                        <ReactSVG src="/icons/save.svg" />
+                    </button>
                 </div>
 
+                <div className="likes">{likes} likes</div>
+
+                <StoryDescription fullname={story.by.fullname} text={story.txt} />
             </footer>
         </article>
-    )
-
+    );
 }
