@@ -29,6 +29,15 @@ export async function loadStory(storyId: string) {
     }
 }
 
+export async function clearStory() {
+    try {
+        store.dispatch(getCmdClearStory())
+    } catch (err) {
+        console.log('Cannot clear story', err)
+        throw err
+    }
+}
+
 
 export async function removeStory(storyId: string) {
     try {
@@ -77,6 +86,12 @@ function getCmdSetStories(stories: Story[]): SetStoriesAction {
     };
 }
 function getCmdSetStory(story: Story): SetStoryAction {
+    return {
+        type: SET_STORY,
+        story
+    }
+}
+function getCmdClearStory(story = null): SetStoryAction {
     return {
         type: SET_STORY,
         story

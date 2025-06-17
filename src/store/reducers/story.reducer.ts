@@ -24,7 +24,7 @@ const initialState: StoryState = {
 
 // --- Action Interfaces ---
 export interface SetStoriesAction { type: typeof SET_STORIES; stories: Story[] }
-export interface SetStoryAction { type: typeof SET_STORY; story: Story }
+export interface SetStoryAction { type: typeof SET_STORY; story: Story | null }
 export interface RemoveStoryAction { type: typeof REMOVE_STORY; storyId: string }
 export interface AddStoryAction { type: typeof ADD_STORY; story: Story }
 export interface UpdateStoryAction { type: typeof UPDATE_STORY; story: Story }

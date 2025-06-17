@@ -3,7 +3,7 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { Login } from './pages/Login.jsx'
 import { Signup } from './pages/Signup.jsx'
-import { StoryDetails } from './pages/StoryDetails.jsx'
+import { StoryDetails } from './pages/StoryDetails.tsx'
 import { HomePage } from './pages/HomePage.jsx'
 
 export function RootCmp() {
