@@ -34,7 +34,7 @@ export function StoryPreview({ story }: { story: Story }) {
                 <div className="story-actions">
                     <div className="left-actions">
                         <ReactSVG src="/icons/heart.svg" />
-                        <Link to={`/story/${story._id}`}>
+                        <Link to={`/?storyId=${story._id}`}>
                             <ReactSVG src="/icons/comment.svg" />
                         </Link>
                         <ReactSVG src="/icons/share.svg" />
@@ -48,11 +48,10 @@ export function StoryPreview({ story }: { story: Story }) {
 
                 <StoryDescription fullname={story.by.fullname} text={story.txt} />
 
-
                 <div className="comments">
                     {comments > 0 && (
                         <div className="comment-tag">
-                            <Link to={`/story/${story._id}`}>
+                            <Link to={`/?storyId=${story._id}`}>
                                 View {comments >= 5 ? 'all' : ''} {comments} comments
                             </Link>
                         </div>
@@ -60,7 +59,6 @@ export function StoryPreview({ story }: { story: Story }) {
                     <div>
                     </div>
                 </div>
-
                 <div>
                     <form className="comments-form">
                         <div className="input-container">
