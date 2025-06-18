@@ -20,12 +20,15 @@ export async function loadStories(filterBy?: any) {
 }
 
 export async function loadStory(storyId: string) {
+    store.dispatch(getCmdSetIsLoading(true))
     try {
         const story = await storyService.getById(storyId)
         store.dispatch(getCmdSetStory(story))
     } catch (err) {
         console.log('Cannot load story', err)
         throw err
+    } finally {
+        store.dispatch(getCmdSetIsLoading(false))
     }
 }
 
