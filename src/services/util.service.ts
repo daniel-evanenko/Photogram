@@ -52,26 +52,39 @@ export function loadFromStorage(key: string) {
     return (data) ? JSON.parse(data) : undefined
 }
 
-export function formatTimeAgo(dateString: string) {
+export function formatTimeAgo(dateString: string, withAgoSuffix: boolean = true): string {
+    if (!dateString) return '';
+
     const now = new Date();
     const past = new Date(dateString);
-    const secondsPast = (now.getTime() - past.getTime()) / 1000;
 
-    if (secondsPast < 60) {
-        return parseInt(secondsPast) + 's ago';
+    if (isNaN(past.getTime())) {
+        return 'Invalid date';
     }
-    if (secondsPast < 3600) {
-        return parseInt(secondsPast / 60) + 'm ago';
+
+    const SECONDS_IN_MINUTE = 60;
+    const SECONDS_IN_HOUR = 3600;
+    const SECONDS_IN_DAY = 86400;
+    const SECONDS_IN_WEEK = 604800;
+
+    const secondsPast = Math.floor((now.getTime() - past.getTime()) / 1000);
+
+    if (secondsPast < 0) return 'in the future';
+    if (secondsPast < 10) return withAgoSuffix ? 'just now' : 'now';
+
+    let res: string;
+
+    if (secondsPast < SECONDS_IN_MINUTE) {
+        res = `${secondsPast}s`;
+    } else if (secondsPast < SECONDS_IN_HOUR) {
+        res = `${Math.floor(secondsPast / SECONDS_IN_MINUTE)}m`;
+    } else if (secondsPast < SECONDS_IN_DAY) {
+        res = `${Math.floor(secondsPast / SECONDS_IN_HOUR)}h`;
+    } else if (secondsPast < SECONDS_IN_WEEK) {
+        res = `${Math.floor(secondsPast / SECONDS_IN_DAY)}d`;
+    } else {
+        res = `${Math.floor(secondsPast / SECONDS_IN_WEEK)}w`;
     }
-    if (secondsPast <= 86400) {
-        return parseInt(secondsPast / 3600) + 'h ago';
-    }
-    if (secondsPast > 86400) {
-        const days = parseInt(secondsPast / 86400);
-        if (days < 7) {
-            return days + 'd ago';
-        }
-        const weeks = parseInt(days / 7);
-        return weeks + 'w ago';
-    }
+
+    return withAgoSuffix ? `${res} ago` : res;
 }

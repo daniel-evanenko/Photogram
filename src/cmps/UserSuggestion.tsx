@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 
 interface Props {
     username: string;
-    subtext?: string;
+    subtext?: string | ReactNode;
     actionText?: string | ReactNode;
     onActionClick?: () => void;
     imgUrl?: string;

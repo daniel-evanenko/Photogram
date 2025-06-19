@@ -1,438 +1,451 @@
 [
-	{
-		"_id": "s101",
-		"createdAt": "2025-06-17T09:43:11.332Z",
-		"txt": "Lake trip with the best 🩷",
-		"imgUrl": "https://placehold.co/600x800/a2d2ff/ffffff?text=Lake+Trip",
-		"by": {
-			"_id": "u101",
-			"fullname": "sunflower_power77",
-			"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-		},
-		"loc": {
-			"lat": 39.0968,
-			"lng": -120.0324,
-			"name": "Lake Tahoe, California"
-		},
-		"comments": [
-			{
-				"id": "c1001",
-				"by": {
-					"_id": "u102",
-					"fullname": "urban_explorer",
-					"imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
-				},
-				"txt": "Looks amazing! So jealous.",
-				"likedBy": [
-					{
-						"_id": "u103",
-						"fullname": "literary_leo",
-						"imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
-					}
-				]
-			},
-			{
-				"id": "c1002",
-				"by": {
-					"_id": "u104",
-					"fullname": "mountain_mike",
-					"imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
-				},
-				"txt": "Next time, invite me!"
-			}
-		],
-		"likedBy": [
-			{
-				"_id": "u102",
-				"fullname": "urban_explorer",
-				"imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
-			},
-			{
-				"_id": "u103",
-				"fullname": "literary_leo",
-				"imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
-			}
-		],
-		"tags": ["fun", "romantic", "nature", "travel"]
-	},
-	{
-		"_id": "s102",
-		"createdAt": "2025-06-17T08:15:22.105Z",
-		"txt": "City lights and late night bites 🌃",
-		"imgUrl": "https://placehold.co/600x800/03071e/ffffff?text=City+Nights",
-		"by": {
-			"_id": "u102",
-			"fullname": "urban_explorer",
-			"imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
-		},
-		"loc": {
-			"lat": 40.7128,
-			"lng": -74.0060,
-			"name": "New York, NY"
-		},
-		"comments": [
-			{
-				"id": "c1003",
-				"by": {
-					"_id": "u101",
-					"fullname": "sunflower_power77",
-					"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-				},
-				"txt": "My favorite city! ❤️"
-			}
-		],
-		"likedBy": [
-			{
-				"_id": "u101",
-				"fullname": "sunflower_power77",
-				"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-			},
-			{
-				"_id": "u105",
-				"fullname": "chef_charlie",
-				"imgUrl": "https://placehold.co/100x100/f28482/000000?text=CC"
-			},
-			{
-				"_id": "u109",
-				"fullname": "rockin_ricky",
-				"imgUrl": "https://placehold.co/100x100/4a4e69/ffffff?text=RR"
-			}
-		],
-		"tags": ["city", "foodie", "nightlife"]
-	},
-	{
-		"_id": "s103",
-		"createdAt": "2025-06-16T22:30:05.812Z",
-		"txt": "Just finished this amazing book! 📚 #bookworm",
-		"imgUrl": "https://placehold.co/600x800/d4a373/ffffff?text=New+Book",
-		"by": {
-			"_id": "u103",
-			"fullname": "literary_leo",
-			"imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
-		},
-		"loc": null,
-		"comments": [
-			{
-				"id": "c1004",
-				"by": {
-					"_id": "u108",
-					"fullname": "green_thumb_gabby",
-					"imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
-				},
-				"txt": "Ooh, add it to my list!",
-				"likedBy": []
-			},
-			{
-				"id": "c1005",
-				"by": {
-					"_id": "u101",
-					"fullname": "sunflower_power77",
-					"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-				},
-				"txt": "I've read that one, it's a classic!"
-			}
-		],
-		"likedBy": [
-			{
-				"_id": "u101",
-				"fullname": "sunflower_power77",
-				"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-			},
-			{
-				"_id": "u108",
-				"fullname": "green_thumb_gabby",
-				"imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
-			}
-		],
-		"tags": ["reading", "books", "cozy"]
-	},
-	{
-		"_id": "s104",
-		"createdAt": "2025-06-16T14:02:49.000Z",
-		"txt": "Morning hike views ⛰️☀️",
-		"imgUrl": "https://placehold.co/600x800/81b29a/ffffff?text=Hike",
-		"by": {
-			"_id": "u104",
-			"fullname": "mountain_mike",
-			"imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
-		},
-		"loc": {
-			"lat": 37.9238,
-			"lng": -122.5960,
-			"name": "Mount Tamalpais, California"
-		},
-		"comments": [
-			{
-				"id": "c1006",
-				"by": {
-					"_id": "u106",
-					"fullname": "sandy_sarah",
-					"imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
-				},
-				"txt": "Wow, what a trail!",
-				"likedBy": [
-					{
-						"_id": "u104",
-						"fullname": "mountain_mike",
-						"imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
-					}
-				]
-			}
-		],
-		"likedBy": [
-			{
-				"_id": "u101",
-				"fullname": "sunflower_power77",
-				"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-			},
-			{
-				"_id": "u106",
-				"fullname": "sandy_sarah",
-				"imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
-			}
-		],
-		"tags": ["hiking", "nature", "fitness"]
-	},
-	{
-		"_id": "s105",
-		"createdAt": "2025-06-15T19:55:01.489Z",
-		"txt": "Trying out a new recipe! Gordon Ramsay who? �",
-		"imgUrl": "https://placehold.co/600x800/f28482/ffffff?text=Cooking",
-		"by": {
-			"_id": "u105",
-			"fullname": "chef_charlie",
-			"imgUrl": "https://placehold.co/100x100/f28482/000000?text=CC"
-		},
-		"loc": null,
-		"comments": [],
-		"likedBy": [
-			{
-				"_id": "u102",
-				"fullname": "urban_explorer",
-				"imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
-			}
-		],
-		"tags": ["cooking", "food", "home"]
-	},
-	{
-		"_id": "s106",
-		"createdAt": "2025-06-15T12:10:33.141Z",
-		"txt": "Beach day bliss 🌊",
-		"imgUrl": "https://placehold.co/600x800/56ab91/ffffff?text=Beach",
-		"by": {
-			"_id": "u106",
-			"fullname": "sandy_sarah",
-			"imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
-		},
-		"loc": {
-			"lat": 25.7907,
-			"lng": -80.1300,
-			"name": "Miami Beach, Florida"
-		},
-		"comments": [
-			{
-				"id": "c1007",
-				"by": {
-					"_id": "u104",
-					"fullname": "mountain_mike",
-					"imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
-				},
-				"txt": "I prefer the mountains but this looks nice!"
-			},
-			{
-				"id": "c1008",
-				"by": {
-					"_id": "u101",
-					"fullname": "sunflower_power77",
-					"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-				},
-				"txt": "So sunny! ☀️"
-			}
-		],
-		"likedBy": [
-			{
-				"_id": "u101",
-				"fullname": "sunflower_power77",
-				"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-			},
-			{
-				"_id": "u102",
-				"fullname": "urban_explorer",
-				"imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
-			},
-			{
-				"_id": "u104",
-				"fullname": "mountain_mike",
-				"imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
-			}
-		],
-		"tags": ["beach", "summer", "vacation"]
-	},
-	{
-		"_id": "s107",
-		"createdAt": "2025-06-14T17:21:09.918Z",
-		"txt": "Museum hopping today! So much art, so little time.",
-		"imgUrl": "https://placehold.co/600x800/e0b1cb/ffffff?text=Museum",
-		"by": {
-			"_id": "u107",
-			"fullname": "arty_anna",
-			"imgUrl": "https://placehold.co/100x100/e0b1cb/000000?text=AA"
-		},
-		"loc": {
-			"lat": 48.8566,
-			"lng": 2.3522,
-			"name": "Paris, France"
-		},
-		"comments": [
-			{
-				"id": "c1009",
-				"by": {
-					"_id": "u103",
-					"fullname": "literary_leo",
-					"imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
-				},
-				"txt": "Did you go to the Louvre?",
-				"likedBy": []
-			}
-		],
-		"likedBy": [
-			{
-				"_id": "u103",
-				"fullname": "literary_leo",
-				"imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
-			}
-		],
-		"tags": ["art", "museum", "culture", "travel"]
-	},
-	{
-		"_id": "s108",
-		"createdAt": "2025-06-14T11:05:14.333Z",
-		"txt": "My little garden is finally blooming! 🌱🌷",
-		"imgUrl": "https://placehold.co/600x800/99d98c/ffffff?text=Garden",
-		"by": {
-			"_id": "u108",
-			"fullname": "green_thumb_gabby",
-			"imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
-		},
-		"loc": null,
-		"comments": [
-			{
-				"id": "c1010",
-				"by": {
-					"_id": "u101",
-					"fullname": "sunflower_power77",
-					"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-				},
-				"txt": "It's beautiful!",
-				"likedBy": []
-			}
-		],
-		"likedBy": [
-			{
-				"_id": "u101",
-				"fullname": "sunflower_power77",
-				"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-			},
-			{
-				"_id": "u110",
-				"fullname": "pawsitive_pete",
-				"imgUrl": "https://placehold.co/100x100/c9ada7/000000?text=PP"
-			}
-		],
-		"tags": ["gardening", "flowers", "spring", "home"]
-	},
-	{
-		"_id": "s109",
-		"createdAt": "2025-06-13T23:40:00.000Z",
-		"txt": "Concert was insane! 🤘🎸",
-		"imgUrl": "https://placehold.co/600x800/4a4e69/ffffff?text=Concert",
-		"by": {
-			"_id": "u109",
-			"fullname": "rockin_ricky",
-			"imgUrl": "https://placehold.co/100x100/4a4e69/ffffff?text=RR"
-		},
-		"loc": {
-			"lat": 37.7841,
-			"lng": -122.4331,
-			"name": "The Fillmore, San Francisco"
-		},
-		"comments": [
-			{
-				"id": "c1011",
-				"by": {
-					"_id": "u102",
-					"fullname": "urban_explorer",
-					"imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
-				},
-				"txt": "What a lineup!",
-				"likedBy": [
-					{
-						"_id": "u109",
-						"fullname": "rockin_ricky",
-						"imgUrl": "https://placehold.co/100x100/4a4e69/ffffff?text=RR"
-					}
-				]
-			}
-		],
-		"likedBy": [
-			{
-				"_id": "u102",
-				"fullname": "urban_explorer",
-				"imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
-			}
-		],
-		"tags": ["music", "concert", "rock"]
-	},
-	{
-		"_id": "s110",
-		"createdAt": "2025-06-13T16:18:56.245Z",
-		"txt": "Lazy Sunday with my furry best friend. 🐾",
-		"imgUrl": "https://placehold.co/600x800/c9ada7/ffffff?text=Pet",
-		"by": {
-			"_id": "u110",
-			"fullname": "pawsitive_pete",
-			"imgUrl": "https://placehold.co/100x100/c9ada7/000000?text=PP"
-		},
-		"loc": null,
-		"comments": [
-			{
-				"id": "c1012",
-				"by": {
-					"_id": "u108",
-					"fullname": "green_thumb_gabby",
-					"imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
-				},
-				"txt": "So cute! What's their name?",
-				"likedBy": []
-			},
-			{
-				"id": "c1013",
-				"by": {
-					"_id": "u106",
-					"fullname": "sandy_sarah",
-					"imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
-				},
-				"txt": "Aww, adorable!",
-				"likedBy": []
-			}
-		],
-		"likedBy": [
-			{
-				"_id": "u101",
-				"fullname": "sunflower_power77",
-				"imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
-			},
-			{
-				"_id": "u106",
-				"fullname": "sandy_sarah",
-				"imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
-			},
-			{
-				"_id": "u108",
-				"fullname": "green_thumb_gabby",
-				"imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
-			}
-		],
-		"tags": ["pets", "dog", "cute", "weekend"]
-	}
+    {
+        "_id": "s101",
+        "createdAt": "2025-06-17T09:43:11.332Z",
+        "txt": "Lake trip with the best 🩷",
+        "imgUrl": "https://placehold.co/600x800/a2d2ff/ffffff?text=Lake+Trip",
+        "by": {
+            "_id": "u101",
+            "fullname": "sunflower_power77",
+            "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+        },
+        "loc": {
+            "lat": 39.0968,
+            "lng": -120.0324,
+            "name": "Lake Tahoe, California"
+        },
+        "comments": [
+            {
+                "id": "c1001",
+                "by": {
+                    "_id": "u102",
+                    "fullname": "urban_explorer",
+                    "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+                },
+                "txt": "Looks amazing! So jealous.",
+                "createdAt": "2025-06-17T10:05:15.123Z",
+                "likedBy": [
+                    {
+                        "_id": "u103",
+                        "fullname": "literary_leo",
+                        "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
+                    }
+                ]
+            },
+            {
+                "id": "c1002",
+                "by": {
+                    "_id": "u104",
+                    "fullname": "mountain_mike",
+                    "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+                },
+                "txt": "Next time, invite me!",
+                "createdAt": "2025-06-17T11:21:03.489Z"
+            }
+        ],
+        "likedBy": [
+            {
+                "_id": "u102",
+                "fullname": "urban_explorer",
+                "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+            },
+            {
+                "_id": "u103",
+                "fullname": "literary_leo",
+                "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
+            }
+        ],
+        "tags": ["fun", "romantic", "nature", "travel"]
+    },
+    {
+        "_id": "s102",
+        "createdAt": "2025-06-17T08:15:22.105Z",
+        "txt": "City lights and late night bites 🌃",
+        "imgUrl": "https://placehold.co/600x800/03071e/ffffff?text=City+Nights",
+        "by": {
+            "_id": "u102",
+            "fullname": "urban_explorer",
+            "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+        },
+        "loc": {
+            "lat": 40.7128,
+            "lng": -74.0060,
+            "name": "New York, NY"
+        },
+        "comments": [
+            {
+                "id": "c1003",
+                "by": {
+                    "_id": "u101",
+                    "fullname": "sunflower_power77",
+                    "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+                },
+                "txt": "My favorite city! ❤️",
+                "createdAt": "2025-06-17T08:18:45.912Z"
+            }
+        ],
+        "likedBy": [
+            {
+                "_id": "u101",
+                "fullname": "sunflower_power77",
+                "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+            },
+            {
+                "_id": "u105",
+                "fullname": "chef_charlie",
+                "imgUrl": "https://placehold.co/100x100/f28482/000000?text=CC"
+            },
+            {
+                "_id": "u109",
+                "fullname": "rockin_ricky",
+                "imgUrl": "https://placehold.co/100x100/4a4e69/ffffff?text=RR"
+            }
+        ],
+        "tags": ["city", "foodie", "nightlife"]
+    },
+    {
+        "_id": "s103",
+        "createdAt": "2025-06-16T22:30:05.812Z",
+        "txt": "Just finished this amazing book! 📚 #bookworm",
+        "imgUrl": "https://placehold.co/600x800/d4a373/ffffff?text=New+Book",
+        "by": {
+            "_id": "u103",
+            "fullname": "literary_leo",
+            "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
+        },
+        "loc": null,
+        "comments": [
+            {
+                "id": "c1004",
+                "by": {
+                    "_id": "u108",
+                    "fullname": "green_thumb_gabby",
+                    "imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
+                },
+                "txt": "Ooh, add it to my list!",
+                "createdAt": "2025-06-17T01:15:11.200Z",
+                "likedBy": []
+            },
+            {
+                "id": "c1005",
+                "by": {
+                    "_id": "u101",
+                    "fullname": "sunflower_power77",
+                    "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+                },
+                "txt": "I've read that one, it's a classic!",
+                "createdAt": "2025-06-17T09:02:30.150Z"
+            }
+        ],
+        "likedBy": [
+            {
+                "_id": "u101",
+                "fullname": "sunflower_power77",
+                "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+            },
+            {
+                "_id": "u108",
+                "fullname": "green_thumb_gabby",
+                "imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
+            }
+        ],
+        "tags": ["reading", "books", "cozy"]
+    },
+    {
+        "_id": "s104",
+        "createdAt": "2025-06-16T14:02:49.000Z",
+        "txt": "Morning hike views ⛰️☀️",
+        "imgUrl": "https://placehold.co/600x800/81b29a/ffffff?text=Hike",
+        "by": {
+            "_id": "u104",
+            "fullname": "mountain_mike",
+            "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+        },
+        "loc": {
+            "lat": 37.9238,
+            "lng": -122.5960,
+            "name": "Mount Tamalpais, California"
+        },
+        "comments": [
+            {
+                "id": "c1006",
+                "by": {
+                    "_id": "u106",
+                    "fullname": "sandy_sarah",
+                    "imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
+                },
+                "txt": "Wow, what a trail!",
+                "createdAt": "2025-06-16T14:30:18.721Z",
+                "likedBy": [
+                    {
+                        "_id": "u104",
+                        "fullname": "mountain_mike",
+                        "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+                    }
+                ]
+            }
+        ],
+        "likedBy": [
+            {
+                "_id": "u101",
+                "fullname": "sunflower_power77",
+                "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+            },
+            {
+                "_id": "u106",
+                "fullname": "sandy_sarah",
+                "imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
+            }
+        ],
+        "tags": ["hiking", "nature", "fitness"]
+    },
+    {
+        "_id": "s105",
+        "createdAt": "2025-06-15T19:55:01.489Z",
+        "txt": "Trying out a new recipe! Gordon Ramsay who? 😂",
+        "imgUrl": "https://placehold.co/600x800/f28482/ffffff?text=Cooking",
+        "by": {
+            "_id": "u105",
+            "fullname": "chef_charlie",
+            "imgUrl": "https://placehold.co/100x100/f28482/000000?text=CC"
+        },
+        "loc": null,
+        "comments": [],
+        "likedBy": [
+            {
+                "_id": "u102",
+                "fullname": "urban_explorer",
+                "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+            }
+        ],
+        "tags": ["cooking", "food", "home"]
+    },
+    {
+        "_id": "s106",
+        "createdAt": "2025-06-15T12:10:33.141Z",
+        "txt": "Beach day bliss 🌊",
+        "imgUrl": "https://placehold.co/600x800/56ab91/ffffff?text=Beach",
+        "by": {
+            "_id": "u106",
+            "fullname": "sandy_sarah",
+            "imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
+        },
+        "loc": {
+            "lat": 25.7907,
+            "lng": -80.1300,
+            "name": "Miami Beach, Florida"
+        },
+        "comments": [
+            {
+                "id": "c1007",
+                "by": {
+                    "_id": "u104",
+                    "fullname": "mountain_mike",
+                    "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+                },
+                "txt": "I prefer the mountains but this looks nice!",
+                "createdAt": "2025-06-15T13:00:00.000Z"
+            },
+            {
+                "id": "c1008",
+                "by": {
+                    "_id": "u101",
+                    "fullname": "sunflower_power77",
+                    "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+                },
+                "txt": "So sunny! ☀️",
+                "createdAt": "2025-06-15T13:05:12.345Z"
+            }
+        ],
+        "likedBy": [
+            {
+                "_id": "u101",
+                "fullname": "sunflower_power77",
+                "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+            },
+            {
+                "_id": "u102",
+                "fullname": "urban_explorer",
+                "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+            },
+            {
+                "_id": "u104",
+                "fullname": "mountain_mike",
+                "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+            }
+        ],
+        "tags": ["beach", "summer", "vacation"]
+    },
+    {
+        "_id": "s107",
+        "createdAt": "2025-06-14T17:21:09.918Z",
+        "txt": "Museum hopping today! So much art, so little time.",
+        "imgUrl": "https://placehold.co/600x800/e0b1cb/ffffff?text=Museum",
+        "by": {
+            "_id": "u107",
+            "fullname": "arty_anna",
+            "imgUrl": "https://placehold.co/100x100/e0b1cb/000000?text=AA"
+        },
+        "loc": {
+            "lat": 48.8566,
+            "lng": 2.3522,
+            "name": "Paris, France"
+        },
+        "comments": [
+            {
+                "id": "c1009",
+                "by": {
+                    "_id": "u103",
+                    "fullname": "literary_leo",
+                    "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
+                },
+                "txt": "Did you go to the Louvre?",
+                "createdAt": "2025-06-14T18:00:05.111Z",
+                "likedBy": []
+            }
+        ],
+        "likedBy": [
+            {
+                "_id": "u103",
+                "fullname": "literary_leo",
+                "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
+            }
+        ],
+        "tags": ["art", "museum", "culture", "travel"]
+    },
+    {
+        "_id": "s108",
+        "createdAt": "2025-06-14T11:05:14.333Z",
+        "txt": "My little garden is finally blooming! 🌱🌷",
+        "imgUrl": "https://placehold.co/600x800/99d98c/ffffff?text=Garden",
+        "by": {
+            "_id": "u108",
+            "fullname": "green_thumb_gabby",
+            "imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
+        },
+        "loc": null,
+        "comments": [
+            {
+                "id": "c1010",
+                "by": {
+                    "_id": "u101",
+                    "fullname": "sunflower_power77",
+                    "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+                },
+                "txt": "It's beautiful!",
+                "createdAt": "2025-06-14T11:10:22.789Z",
+                "likedBy": []
+            }
+        ],
+        "likedBy": [
+            {
+                "_id": "u101",
+                "fullname": "sunflower_power77",
+                "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+            },
+            {
+                "_id": "u110",
+                "fullname": "pawsitive_pete",
+                "imgUrl": "https://placehold.co/100x100/c9ada7/000000?text=PP"
+            }
+        ],
+        "tags": ["gardening", "flowers", "spring", "home"]
+    },
+    {
+        "_id": "s109",
+        "createdAt": "2025-06-13T23:40:00.000Z",
+        "txt": "Concert was insane! 🤘🎸",
+        "imgUrl": "https://placehold.co/600x800/4a4e69/ffffff?text=Concert",
+        "by": {
+            "_id": "u109",
+            "fullname": "rockin_ricky",
+            "imgUrl": "https://placehold.co/100x100/4a4e69/ffffff?text=RR"
+        },
+        "loc": {
+            "lat": 37.7841,
+            "lng": -122.4331,
+            "name": "The Fillmore, San Francisco"
+        },
+        "comments": [
+            {
+                "id": "c1011",
+                "by": {
+                    "_id": "u102",
+                    "fullname": "urban_explorer",
+                    "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+                },
+                "txt": "What a lineup!",
+                "createdAt": "2025-06-14T00:12:45.678Z",
+                "likedBy": [
+                    {
+                        "_id": "u109",
+                        "fullname": "rockin_ricky",
+                        "imgUrl": "https://placehold.co/100x100/4a4e69/ffffff?text=RR"
+                    }
+                ]
+            }
+        ],
+        "likedBy": [
+            {
+                "_id": "u102",
+                "fullname": "urban_explorer",
+                "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+            }
+        ],
+        "tags": ["music", "concert", "rock"]
+    },
+    {
+        "_id": "s110",
+        "createdAt": "2025-06-13T16:18:56.245Z",
+        "txt": "Lazy Sunday with my furry best friend. 🐾",
+        "imgUrl": "https://placehold.co/600x800/c9ada7/ffffff?text=Pet",
+        "by": {
+            "_id": "u110",
+            "fullname": "pawsitive_pete",
+            "imgUrl": "https://placehold.co/100x100/c9ada7/000000?text=PP"
+        },
+        "loc": null,
+        "comments": [
+            {
+                "id": "c1012",
+                "by": {
+                    "_id": "u108",
+                    "fullname": "green_thumb_gabby",
+                    "imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
+                },
+                "txt": "So cute! What's their name?",
+                "createdAt": "2025-06-13T16:30:11.999Z",
+                "likedBy": []
+            },
+            {
+                "id": "c1013",
+                "by": {
+                    "_id": "u106",
+                    "fullname": "sandy_sarah",
+                    "imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
+                },
+                "txt": "Aww, adorable!",
+                "createdAt": "2025-06-13T17:01:50.101Z",
+                "likedBy": []
+            }
+        ],
+        "likedBy": [
+            {
+                "_id": "u101",
+                "fullname": "sunflower_power77",
+                "imgUrl": "https://placehold.co/100x100/f4d35e/000000?text=SP"
+            },
+            {
+                "_id": "u106",
+                "fullname": "sandy_sarah",
+                "imgUrl": "https://placehold.co/100x100/56ab91/000000?text=SS"
+            },
+            {
+                "_id": "u108",
+                "fullname": "green_thumb_gabby",
+                "imgUrl": "https://placehold.co/100x100/99d98c/000000?text=GG"
+            }
+        ],
+        "tags": ["pets", "dog", "cute", "weekend"]
+    }
 ]

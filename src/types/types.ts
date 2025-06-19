@@ -18,6 +18,7 @@ export interface Comment {
     id: string;
     by: User;
     txt: string;
+    createdAt: string;
     /** Who liked this comment (optional) */
     likedBy?: User[];
 }

@@ -24,7 +24,24 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     max-width: 180px;
-                    display: block;
+                    display: flex;
+                    gap: 10px;
+
+                    svg {
+                        cursor: pointer;
+                        visibility: hidden;
+                    }
+
+                    svg:active {
+                        opacity: 0.5;
+                    }
+
+                }
+
+                span:hover {
+                    svg {
+                        visibility: visible;
+                    }
                 }
 
                 a:active {
