@@ -17,6 +17,8 @@
 @import "pages/LoginSignup";
 @import "pages/HomePage.scss";
 @import "pages/StoryIndex.scss";
+@import "pages/StoryDetailsModal.scss";
+@import "pages/StoryDetails.scss";
 
 // Components
 @import "cmps/SuggestionsSidebar.scss";
@@ -24,5 +26,4 @@
 @import "cmps/StoryPreview.scss";
 @import "cmps/StoryDescription.scss";
 @import "cmps/StoryList.scss";
-@import "pages/StoryDetails.scss";
-@import "pages/StoryDetailsModal.scss";
+@import "cmps/UserSuggestion.scss";

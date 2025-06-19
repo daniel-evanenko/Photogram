@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { RootState } from '../store/store';
 import { clearStory, loadStory } from '../store/actions/story.actions';
+import { UserSuggestion } from '../cmps/UserSuggestion';
+import { ReactSVG } from 'react-svg';
 
 
 export function StoryDetailsModal() {
@@ -35,12 +37,28 @@ export function StoryDetailsModal() {
         <div className="story-details-backdrop" onClick={handleClose}>
             <div className="story-details-modal" onClick={(e) => e.stopPropagation()}>
                 {isLoading && <p>Loading...</p>}
-                {story && (
+                {story &&
                     <>
-                        <h2>{story.txt}</h2>
-                        <button onClick={handleClose}>Close</button>
-                    </>
-                )}
+                        <div className="modal-image-column">
+                            <img src={story?.imgUrl} alt="" />
+                        </div>
+                        <div className='modal-content-column'>
+                            <header className='modal-header'>
+                                <UserSuggestion
+                                    username="daniel__evanenko"
+                                    imgUrl="/avatars/daniel.jpg"
+                                    actionText={<ReactSVG src='/public/icons/more.svg'></ReactSVG>}
+                                    avatarSize={32}
+                                />
+                            </header>
+                            <section className='modal-comments-area'>
+                                <h2>Section</h2>
+                            </section>
+                            <footer className='modal-actions-footer'>
+                                <h3>Footer</h3>
+                            </footer>
+                        </div>
+                    </>}
             </div>
         </div>
     );

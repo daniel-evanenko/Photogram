@@ -1,21 +1,22 @@
 import { Avatar } from "@mui/material";
-import React from "react";
+import React, { ReactNode } from "react";
 
 interface Props {
     username: string;
     subtext?: string;
-    actionText?: string;
+    actionText?: string | ReactNode;
     onActionClick?: () => void;
     imgUrl?: string;
+    avatarSize?: number;
 }
 
-export function UserSuggestion({ username, subtext, actionText, onActionClick, imgUrl }: Props) {
+export function UserSuggestion({ username, subtext, actionText, onActionClick, imgUrl, avatarSize = 40 }: Props) {
     return (
         <div className="suggestion-row">
             <div className="user-info">
                 <Avatar
                     src={imgUrl}
-                    sx={{ width: 40, height: 40 }}
+                    sx={{ width: avatarSize, height: avatarSize }}
                 />
                 <div className="username">
                     <a>{username}</a>
