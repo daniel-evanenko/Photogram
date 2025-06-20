@@ -5,7 +5,7 @@ import { StoryDescription } from "./StoryDescription";
 import { Story } from "../types/types";
 import React from "react";
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export function StoryPreview({ story }: { story: Story }) {
     const likes = story.likedBy.length;
@@ -34,7 +34,9 @@ export function StoryPreview({ story }: { story: Story }) {
                 <div className="story-actions">
                     <div className="left-actions">
                         <ReactSVG src="/icons/heart.svg" />
-                        <Link to={`/?storyId=${story._id}`}>
+                        <Link
+                            to={`/story/${story._id}`}
+                        >
                             <ReactSVG src="/icons/comment.svg" />
                         </Link>
                         <ReactSVG src="/icons/share.svg" />
@@ -51,7 +53,7 @@ export function StoryPreview({ story }: { story: Story }) {
                 <div className="comments">
                     {comments > 0 && (
                         <div className="comment-tag">
-                            <Link to={`/?storyId=${story._id}`}>
+                            <Link to={`/story/${story._id}`}>
                                 View {comments >= 5 ? 'all' : ''} {comments} comments
                             </Link>
                         </div>

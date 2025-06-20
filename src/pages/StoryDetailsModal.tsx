@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { RootState } from '../store/store';
 import { clearStory, loadStory } from '../store/actions/story.actions';
 import { UserSuggestion } from '../cmps/UserSuggestion';
@@ -12,9 +12,8 @@ export function StoryDetailsModal() {
     const story = useSelector((storeState: RootState) => storeState.storyModule.story);
     const isLoading = useSelector((storeState: RootState) => storeState.storyModule.isLoading);
 
-    const [searchParams, setSearchParams] = useSearchParams();
-
-    const storyId = searchParams.get('storyId');
+    const navigate = useNavigate();
+    const { storyId } = useParams();
 
     useEffect(() => {
         if (storyId) {
@@ -27,7 +26,7 @@ export function StoryDetailsModal() {
     }, [storyId]);
 
     const handleClose = () => {
-        setSearchParams({});
+        navigate('/');
     };
 
     if (!storyId) {
