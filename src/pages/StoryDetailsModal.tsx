@@ -6,6 +6,7 @@ import { clearStory, loadStory } from '../store/actions/story.actions';
 import { UserSuggestion } from '../cmps/UserSuggestion';
 import { ReactSVG } from 'react-svg';
 import { formatTimeAgo } from '../services/util.service';
+import { CommentItem } from '../cmps/CommentItem';
 
 
 export function StoryDetailsModal() {
@@ -57,22 +58,12 @@ export function StoryDetailsModal() {
                             </header>
                             <section className='modal-comments-area'>
                                 <ul>
-                                    {story.comments.map(c => <li>{<UserSuggestion
-                                        username={c.by.fullname}
-                                        subtext={
-                                            <>
-                                                {formatTimeAgo(c.createdAt, false)}
-                                                <ReactSVG onClick={moreOptionClicked} src='/public/icons/more.svg'></ReactSVG>
-                                            </>
-
+                                    {story.comments.map(c => <li>
+                                        {
+                                            <CommentItem user={c.by} text={c.txt} timestamp={formatTimeAgo(c.createdAt, false)}></CommentItem>
                                         }
-                                        imgUrl={c.by.imgUrl}
-                                        // actionText={<ReactSVG src='/public/icons/heart.svg'></ReactSVG>}
-                                        avatarSize={32}
-                                    />}</li>)}
-
+                                    </li>)}
                                 </ul>
-                                <h2>Section</h2>
                             </section>
                             <footer className='modal-actions-footer'>
                                 <h3>Footer</h3>

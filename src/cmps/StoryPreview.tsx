@@ -5,7 +5,7 @@ import { StoryDescription } from "./StoryDescription";
 import { Story } from "../types/types";
 import React from "react";
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function StoryPreview({ story }: { story: Story }) {
     const likes = story.likedBy.length;

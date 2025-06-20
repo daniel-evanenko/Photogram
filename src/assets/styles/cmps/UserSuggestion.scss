@@ -27,26 +27,10 @@
                     display: flex;
                     gap: 10px;
 
-                    svg {
-                        cursor: pointer;
-                        visibility: hidden;
-                    }
-
-                    svg:active {
-                        opacity: 0.5;
-                    }
 
                 }
 
-                span:hover {
-                    svg {
-                        visibility: visible;
-                    }
-                }
 
-                a:active {
-                    color: $clr2;
-                }
             }
         }
 
