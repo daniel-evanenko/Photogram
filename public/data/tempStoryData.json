@@ -14,35 +14,256 @@
             "lng": -120.0324,
             "name": "Lake Tahoe, California"
         },
-        "comments": [
-            {
-                "id": "c1001",
-                "by": {
-                    "_id": "u102",
-                    "fullname": "urban_explorer",
-                    "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
-                },
-                "txt": "Looks amazing! So jealous.",
-                "createdAt": "2025-06-17T10:05:15.123Z",
-                "likedBy": [
-                    {
-                        "_id": "u103",
-                        "fullname": "literary_leo",
-                        "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
-                    }
-                ]
-            },
-            {
-                "id": "c1002",
-                "by": {
-                    "_id": "u104",
-                    "fullname": "mountain_mike",
-                    "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
-                },
-                "txt": "Next time, invite me!",
-                "createdAt": "2025-06-17T11:21:03.489Z"
-            }
-        ],
+  "comments": [
+    {
+      "id": "c1001",
+      "by": {
+        "_id": "u102",
+        "fullname": "urban_explorer",
+        "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+      },
+      "txt": "Looks amazing! So jealous.",
+      "createdAt": "2025-06-21T10:05:15.123Z",
+      "likedBy": [
+        {
+          "_id": "u103",
+          "fullname": "literary_leo",
+          "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
+        }
+      ]
+    },
+    {
+      "id": "c1002",
+      "by": {
+        "_id": "u104",
+        "fullname": "mountain_mike",
+        "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+      },
+      "txt": "Next time, invite me!",
+      "createdAt": "2025-06-21T11:21:03.489Z"
+    },
+    {
+      "id": "c1003",
+      "by": {
+        "_id": "u105",
+        "fullname": "culinary_cate",
+        "imgUrl": "https://placehold.co/100x100/f4a261/ffffff?text=CC"
+      },
+      "txt": "This looks delicious, what's the recipe?",
+      "createdAt": "2025-06-21T10:35:45Z"
+    },
+    {
+      "id": "c1004",
+      "by": {
+        "_id": "u103",
+        "fullname": "literary_leo",
+        "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
+      },
+      "txt": "Reminds me of a scene from a book I just read.",
+      "createdAt": "2025-06-21T10:48:19Z",
+      "likedBy": [
+        {
+          "_id": "u102",
+          "fullname": "urban_explorer",
+          "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+        },
+        {
+          "_id": "u104",
+          "fullname": "mountain_mike",
+          "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+        }
+      ]
+    },
+    {
+      "id": "c1005",
+      "by": {
+        "_id": "u106",
+        "fullname": "pixel_pioneer",
+        "imgUrl": "https://placehold.co/100x100/e07a5f/ffffff?text=PP"
+      },
+      "txt": "Incredible shot! The composition is perfect.",
+      "createdAt": "2025-06-21T11:02:00Z"
+    },
+    {
+      "id": "c1006",
+      "by": {
+        "_id": "u107",
+        "fullname": "wandering_willow",
+        "imgUrl": "https://placehold.co/100x100/3d405b/ffffff?text=WW"
+      },
+      "txt": "I need to visit this place one day.",
+      "createdAt": "2025-06-21T11:15:30Z"
+    },
+    {
+      "id": "c1007",
+      "by": {
+        "_id": "u102",
+        "fullname": "urban_explorer",
+        "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+      },
+      "txt": "Wow, just wow! 🤩",
+      "createdAt": "2025-06-21T11:30:00Z",
+       "likedBy": [
+        {
+          "_id": "u106",
+          "fullname": "pixel_pioneer",
+          "imgUrl": "https://placehold.co/100x100/e07a5f/ffffff?text=PP"
+        }
+      ]
+    },
+    {
+      "id": "c1008",
+      "by": {
+        "_id": "u104",
+        "fullname": "mountain_mike",
+        "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+      },
+      "txt": "Is this a difficult hike?",
+      "createdAt": "2025-06-21T11:45:10Z"
+    },
+    {
+      "id": "c1009",
+      "by": {
+        "_id": "u105",
+        "fullname": "culinary_cate",
+        "imgUrl": "https://placehold.co/100x100/f4a261/ffffff?text=CC"
+      },
+      "txt": "Love the colors in this photo!",
+      "createdAt": "2025-06-21T12:01:05Z"
+    },
+    {
+      "id": "c1010",
+      "by": {
+        "_id": "u106",
+        "fullname": "pixel_pioneer",
+        "imgUrl": "https://placehold.co/100x100/e07a5f/ffffff?text=PP"
+      },
+      "txt": "What camera did you use for this?",
+      "createdAt": "2025-06-21T12:12:12Z"
+    },
+    {
+      "id": "c1011",
+      "by": {
+        "_id": "u107",
+        "fullname": "wandering_willow",
+        "imgUrl": "https://placehold.co/100x100/3d405b/ffffff?text=WW"
+      },
+      "txt": "This is so peaceful.",
+      "createdAt": "2025-06-21T12:25:00Z",
+      "likedBy": [
+        {
+          "_id": "u105",
+          "fullname": "culinary_cate",
+          "imgUrl": "https://placehold.co/100x100/f4a261/ffffff?text=CC"
+        }
+      ]
+    },
+    {
+      "id": "c1012",
+      "by": {
+        "_id": "u103",
+        "fullname": "literary_leo",
+        "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
+      },
+      "txt": "Absolutely stunning.",
+      "createdAt": "2025-06-21T12:39:40Z"
+    },
+    {
+      "id": "c1013",
+      "by": {
+        "_id": "u102",
+        "fullname": "urban_explorer",
+        "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+      },
+      "txt": "I keep coming back to look at this picture.",
+      "createdAt": "2025-06-21T12:55:00Z"
+    },
+    {
+      "id": "c1014",
+      "by": {
+        "_id": "u104",
+        "fullname": "mountain_mike",
+        "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+      },
+      "txt": "Adding this to my bucket list.",
+      "createdAt": "2025-06-21T13:10:00Z"
+    },
+    {
+      "id": "c1015",
+      "by": {
+        "_id": "u106",
+        "fullname": "pixel_pioneer",
+        "imgUrl": "https://placehold.co/100x100/e07a5f/ffffff?text=PP"
+      },
+      "txt": "The lighting is just magical.",
+      "createdAt": "2025-06-21T13:22:22Z",
+      "likedBy": [
+        {
+          "_id": "u107",
+          "fullname": "wandering_willow",
+          "imgUrl": "https://placehold.co/100x100/3d405b/ffffff?text=WW"
+        }
+      ]
+    },
+    {
+      "id": "c1016",
+      "by": {
+        "_id": "u107",
+        "fullname": "wandering_willow",
+        "imgUrl": "https://placehold.co/100x100/3d405b/ffffff?text=WW"
+      },
+      "txt": "This makes me want to travel.",
+      "createdAt": "2025-06-21T13:35:00Z"
+    },
+    {
+      "id": "c1017",
+      "by": {
+        "_id": "u105",
+        "fullname": "culinary_cate",
+        "imgUrl": "https://placehold.co/100x100/f4a261/ffffff?text=CC"
+      },
+      "txt": "So beautiful!",
+      "createdAt": "2025-06-21T13:48:00Z"
+    },
+    {
+      "id": "c1018",
+      "by": {
+        "_id": "u102",
+        "fullname": "urban_explorer",
+        "imgUrl": "https://placehold.co/100x100/03071e/ffffff?text=UE"
+      },
+      "txt": "Great work!",
+      "createdAt": "2025-06-21T14:00:00Z"
+    },
+    {
+      "id": "c1019",
+      "by": {
+        "_id": "u103",
+        "fullname": "literary_leo",
+        "imgUrl": "https://placehold.co/100x100/d4a373/000000?text=LL"
+      },
+      "txt": "This has such a great atmosphere.",
+      "createdAt": "2025-06-21T14:15:00Z",
+      "likedBy": [
+        {
+          "_id": "u104",
+          "fullname": "mountain_mike",
+          "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+        }
+      ]
+    },
+    {
+      "id": "c1020",
+      "by": {
+        "_id": "u104",
+        "fullname": "mountain_mike",
+        "imgUrl": "https://placehold.co/100x100/81b29a/000000?text=MM"
+      },
+      "txt": "Unreal view! Thanks for sharing.",
+      "createdAt": "2025-06-21T14:30:00Z"
+    }
+  ]
+,
         "likedBy": [
             {
                 "_id": "u102",

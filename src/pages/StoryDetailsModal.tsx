@@ -7,11 +7,13 @@ import { UserSuggestion } from '../cmps/UserSuggestion';
 import { ReactSVG } from 'react-svg';
 import { formatTimeAgo } from '../services/util.service';
 import { CommentItem } from '../cmps/CommentItem';
+import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 
 
 export function StoryDetailsModal() {
     const story = useSelector((storeState: RootState) => storeState.storyModule.story);
     const isLoading = useSelector((storeState: RootState) => storeState.storyModule.isLoading);
+    const likes = story?.likedBy.length;
 
     const navigate = useNavigate();
     const { storyId } = useParams();
@@ -65,8 +67,33 @@ export function StoryDetailsModal() {
                                     </li>)}
                                 </ul>
                             </section>
-                            <footer className='modal-actions-footer'>
-                                <h3>Footer</h3>
+                            <footer className="story-footer">
+                                <div className="story-actions">
+                                    <div className="left-actions">
+                                        <ReactSVG src="/icons/heart.svg" />
+                                        <ReactSVG src="/icons/comment.svg" />
+                                        <ReactSVG src="/icons/share.svg" />
+                                    </div>
+                                    <button className="save-action" aria-label="Save story">
+                                        <ReactSVG src="/icons/save.svg" />
+                                    </button>
+                                </div>
+                                <div className="likes">{likes} likes</div>
+                                <div className="time-ago">{formatTimeAgo(story.createdAt)}</div>
+
+
+                                <div className='comments'>
+                                    <form className="comments-form">
+                                        <button type="button" className="emoji-button" aria-label="Add emoji">
+                                            <SentimentSatisfiedOutlinedIcon sx={{ width: 24, height: 24, color: '#737373' }} />
+                                        </button>
+                                        <div className="input-container">
+                                            <input type="text" placeholder="Add a comment..." />
+                                            <button type="button" className="input-button">Post</button>
+                                        </div>
+
+                                    </form>
+                                </div>
                             </footer>
                         </div>
                     </>}

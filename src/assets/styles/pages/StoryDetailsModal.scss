@@ -1,3 +1,7 @@
+body:has(.story-details-backdrop) {
+    overflow: hidden;
+}
+
 .story-details-backdrop {
     position: fixed;
     top: 0;
@@ -5,34 +9,49 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 16px;
 
     .story-details-modal {
         background-color: white;
         border-radius: 8px;
-        width: 50%;
-        height: 95%;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        overflow: hidden;
+        height: 100%;
+        max-height: 1100px;
+        width: 70%;
+        max-width: 1500;
 
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            height: auto;
+            max-height: 95%;
+            width: 95%;
+        }
 
         .modal-image-column {
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
-
         }
 
         .modal-content-column {
             display: flex;
             flex-direction: column;
+            overflow: hidden;
 
             .modal-comments-area {
                 border: 0;
@@ -40,13 +59,18 @@
                 flex-grow: 1;
                 height: calc(100% - 32px);
                 overflow-y: scroll;
-                padding: 0px 16px 16px 16px;
                 scrollbar-width: none;
+                padding: 0px 16px 16px 16px;
                 vertical-align: baseline;
                 width: calc(100% - 32px);
                 border-top: 1px solid rgb(239, 239, 239);
                 border-bottom: 1px solid rgb(239, 239, 239);
                 border-radius: 4px;
+                scrollbar-width: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
 
                 li {
                     display: flex;
@@ -76,5 +100,113 @@
             }
         }
 
+        footer.story-footer {
+            flex-shrink: 0;
+
+            svg {
+                &:hover {
+                    opacity: 0.6;
+                    cursor: pointer;
+                }
+            }
+
+            svg:active {
+                opacity: 0.3;
+            }
+
+            .story-actions {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 6px 16px 8px;
+
+                .left-actions,
+                .save-action {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    display: flex;
+                    gap: 16px;
+                }
+            }
+
+            .likes {
+                font-size: 14px;
+                font-weight: 600;
+                padding-inline: 16px;
+                margin-bottom: 4px;
+            }
+
+            .time-ago {
+                font-size: 12px;
+                padding-inline: 16px;
+                color: $clr2;
+                margin-bottom: 16px;
+            }
+
+            .comments {
+                margin-block: 8px;
+
+                a {
+                    color: $clr2;
+                }
+            }
+
+            .comments {
+                border-top: 1px solid rgb(239, 239, 239);
+
+                .comments-form {
+                    display: flex;
+                    align-items: center;
+                    padding: 6px 16px 6px;
+
+                    .input-container {
+                        position: relative;
+                        flex-grow: 1;
+
+                        input {
+                            border: none;
+                            outline: none;
+                            width: 100%;
+                            font-size: 14px;
+                            background-color: transparent;
+                            padding: 0 50px 0px 0px;
+                        }
+
+                        .input-button {
+                            position: absolute;
+                            right: 0;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            background: none;
+                            border: none;
+                            color: $clr5;
+                            font-weight: 600;
+                            cursor: pointer;
+                            font-size: 12px;
+
+                            opacity: 0;
+                            visibility: hidden;
+                            transition: opacity 0.2s ease, visibility 0.2s ease;
+                        }
+
+                        input:not(:placeholder-shown)+.input-button {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+
+                    .emoji-button {
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        padding: 0;
+                        margin-right: 11px;
+                    }
+                }
+            }
+        }
     }
 }
