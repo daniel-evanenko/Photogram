@@ -1,6 +1,6 @@
 import { storyService } from '../../services/story/story.service.local.js'
 import { Story } from '../../types/types.js'
-import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction } from '../reducers/story.reducer.js'
+import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction, SetActivePicker, SET_ACTIVE_PICKER } from '../reducers/story.reducer.js'
 import { store } from '../store.js'
 
 
@@ -73,19 +73,35 @@ export async function updateStory(story: Story) {
         throw err
     }
 }
+export function toggleEmojiPicker(storyId: string) {
+    try {
+        const { activePickerId } = store.getState().storyModule;
+        const newActiveId = activePickerId === storyId ? null : storyId;
+        store.dispatch(getCmdSetActivePicker(newActiveId))
+    } catch (err) {
+        console.log('Cannot toggle emoji picker', err)
+    }
+}
 
 // Command Creators:
+
+function getCmdSetActivePicker(storyId: string | null): SetActivePicker {
+    return {
+        type: SET_ACTIVE_PICKER,
+        storyId
+    };
+}
 function getCmdSetIsLoading(isLoading: boolean): SetIsLoadingAction {
     return {
         type: SET_IS_LOADING,
-        isLoading: isLoading
+        isLoading
     };
 }
 
 function getCmdSetStories(stories: Story[]): SetStoriesAction {
     return {
         type: SET_STORIES,
-        stories: stories
+        stories
     };
 }
 function getCmdSetStory(story: Story): SetStoryAction {

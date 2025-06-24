@@ -7,19 +7,24 @@ export const REMOVE_STORY = 'REMOVE_STORY';
 export const ADD_STORY = 'ADD_STORY';
 export const UPDATE_STORY = 'UPDATE_STORY';
 export const SET_IS_LOADING = 'SET_IS_LOADING';
+export const SET_ACTIVE_PICKER = 'SET_ACTIVE_PICKER';
 
 // --- State Interface ---
 export interface StoryState {
     stories: Story[];
     story: Story | null;
     isLoading: boolean;
+    activePickerId: string | null;
+
 }
 
 // --- Initial State ---
 const initialState: StoryState = {
     stories: [],
     story: null,
-    isLoading: false
+    isLoading: false,
+    activePickerId: null
+
 };
 
 // --- Action Interfaces ---
@@ -29,9 +34,10 @@ export interface RemoveStoryAction { type: typeof REMOVE_STORY; storyId: string 
 export interface AddStoryAction { type: typeof ADD_STORY; story: Story }
 export interface UpdateStoryAction { type: typeof UPDATE_STORY; story: Story }
 export interface SetIsLoadingAction { type: typeof SET_IS_LOADING; isLoading: boolean }
+export interface SetActivePicker { type: typeof SET_ACTIVE_PICKER; storyId: string | null }
 
 // Union type for all possible story actions.
-type StoryAction = SetStoriesAction | SetStoryAction | RemoveStoryAction | AddStoryAction | UpdateStoryAction | SetIsLoadingAction;
+type StoryAction = SetStoriesAction | SetStoryAction | RemoveStoryAction | AddStoryAction | UpdateStoryAction | SetIsLoadingAction | SetActivePicker;
 
 
 // --- Reducer Function ---
@@ -69,7 +75,11 @@ export function storyReducer(state: StoryState = initialState, action: StoryActi
                     story._id === action.story._id ? action.story : story
                 )
             };
-
+        case SET_ACTIVE_PICKER:
+            return {
+                ...state,
+                activePickerId: action.storyId,
+            };
         default:
             // If the action doesn't match, return the existing state without changes.
             return state;

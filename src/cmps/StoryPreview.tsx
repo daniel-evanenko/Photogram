@@ -3,14 +3,35 @@ import { ReactSVG } from "react-svg";
 import { formatTimeAgo } from "../services/util.service";
 import { StoryDescription } from "./StoryDescription";
 import { Story } from "../types/types";
-import React from "react";
+import React, { useState } from "react";
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import { Link } from "react-router-dom";
+import { useForm } from "../customHooks/useForm";
+import EmojiPicker from "emoji-picker-react";
+import { toggleEmojiPicker } from "../store/actions/story.actions";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 export function StoryPreview({ story }: { story: Story }) {
+    const activePickerId = useSelector((storeState: RootState) => storeState.storyModule.activePickerId);
+    const [newComment, setNewComment, handleChange] = useForm({ txt: '' });
     const likes = story.likedBy.length;
     const comments = story.comments.length;
+    const isPickerOpen = activePickerId === story?._id;
 
+    const onAddComment = (ev: React.FormEvent) => {
+        ev.preventDefault();
+        if (!newComment.txt) return;
+        setNewComment({ txt: '' });
+        toggleEmojiPicker(story._id)
+    };
+    function moreOptionClicked() {
+        console.log('moreOptionClicked')
+    }
+
+    const onEmojiClick = (emojiObject: { emoji: string; }) => {
+        setNewComment((prevComment: { txt: string; }) => ({ ...prevComment, txt: prevComment.txt + emojiObject.emoji }));
+    };
     return (
         <article className="story-preview">
             <header className="story-header">
@@ -62,15 +83,30 @@ export function StoryPreview({ story }: { story: Story }) {
                     </div>
                 </div>
                 <div>
-                    <form className="comments-form">
+                    <form className="comments-form" onSubmit={onAddComment}>
                         <div className="input-container">
-                            <input type="text" placeholder="Add a comment..." />
-                            <button type="button" className="input-button">Post</button>
+                            <input
+                                type="text"
+                                placeholder="Add a comment..."
+                                name="txt"
+                                value={newComment.txt}
+                                onChange={handleChange}
+                            />
+                            <button type="submit" className="input-button">Post</button>
                         </div>
-                        <button type="button" className="emoji-button" aria-label="Add emoji">
+                        <button
+                            type="button"
+                            className="emoji-button"
+                            onClick={() => toggleEmojiPicker(story._id)}>
                             <SentimentSatisfiedOutlinedIcon sx={{ width: 13, height: 13, color: '#737373' }} />
                         </button>
+                        {isPickerOpen && (
+                            <div className="emoji-picker-wrapper">
+                                <EmojiPicker onEmojiClick={onEmojiClick} />
+                            </div>
+                        )}
                     </form>
+
                 </div>
             </footer>
         </article>

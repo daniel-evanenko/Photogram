@@ -26,6 +26,7 @@ body:has(.story-details-backdrop) {
         max-height: 1100px;
         width: 70%;
         max-width: 1500;
+        position: relative;
 
         @media (max-width: 768px) {
             grid-template-columns: 1fr;
@@ -159,6 +160,7 @@ body:has(.story-details-backdrop) {
                     display: flex;
                     align-items: center;
                     padding: 6px 16px 6px;
+                    position: relative;
 
                     .input-container {
                         position: relative;
@@ -205,6 +207,7 @@ body:has(.story-details-backdrop) {
                         padding: 0;
                         margin-right: 11px;
                     }
+
                 }
             }
         }

@@ -1,22 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { RootState } from '../store/store';
-import { clearStory, loadStory } from '../store/actions/story.actions';
+import { clearStory, loadStory, toggleEmojiPicker } from '../store/actions/story.actions';
 import { UserSuggestion } from '../cmps/UserSuggestion';
 import { ReactSVG } from 'react-svg';
 import { formatTimeAgo } from '../services/util.service';
 import { CommentItem } from '../cmps/CommentItem';
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
+import EmojiPicker from 'emoji-picker-react';
+import { useForm } from '../customHooks/useForm';
+import LoadingCircle from '../cmps/LoadingCircle';
 
 
 export function StoryDetailsModal() {
     const story = useSelector((storeState: RootState) => storeState.storyModule.story);
     const isLoading = useSelector((storeState: RootState) => storeState.storyModule.isLoading);
+    const activePickerId = useSelector((storeState: RootState) => storeState.storyModule.activePickerId);
+
     const likes = story?.likedBy.length;
 
     const navigate = useNavigate();
     const { storyId } = useParams();
+    const [newComment, setNewComment, handleChange] = useForm({ txt: '' });
+    const isPickerOpen = activePickerId === story?._id;
 
     useEffect(() => {
         if (storyId) {
@@ -32,18 +39,25 @@ export function StoryDetailsModal() {
         navigate('/');
     };
 
-    if (!storyId) {
-        return null;
-    }
-
+    const onAddComment = (ev: React.FormEvent) => {
+        ev.preventDefault();
+        if (!newComment.txt) return;
+        setNewComment({ txt: '' });
+        toggleEmojiPicker(storyId || '')
+    };
     function moreOptionClicked() {
         console.log('moreOptionClicked')
     }
 
+    const onEmojiClick = (emojiObject: { emoji: string; }) => {
+        setNewComment((prevComment: { txt: string; }) => ({ ...prevComment, txt: prevComment.txt + emojiObject.emoji }));
+    };
+
+
     return (
         <div className="story-details-backdrop" onClick={handleClose}>
+            {isLoading && <LoadingCircle></LoadingCircle>}
             <div className="story-details-modal" onClick={(e) => e.stopPropagation()}>
-                {isLoading && <p>Loading...</p>}
                 {story &&
                     <>
                         <div className="modal-image-column">
@@ -83,15 +97,29 @@ export function StoryDetailsModal() {
 
 
                                 <div className='comments'>
-                                    <form className="comments-form">
-                                        <button type="button" className="emoji-button" aria-label="Add emoji">
+                                    <form className="comments-form" onSubmit={onAddComment}>
+                                        <button
+                                            type="button"
+                                            className="emoji-button"
+                                            onClick={() => toggleEmojiPicker(story._id)}
+                                        >
                                             <SentimentSatisfiedOutlinedIcon sx={{ width: 24, height: 24, color: '#737373' }} />
                                         </button>
                                         <div className="input-container">
-                                            <input type="text" placeholder="Add a comment..." />
-                                            <button type="button" className="input-button">Post</button>
+                                            <input
+                                                type="text"
+                                                placeholder="Add a comment..."
+                                                name="txt"
+                                                value={newComment.txt}
+                                                onChange={handleChange}
+                                            />
+                                            <button type="submit" className="input-button">Post</button>
                                         </div>
-
+                                        {isPickerOpen && (
+                                            <div className="emoji-picker-wrapper">
+                                                <EmojiPicker onEmojiClick={onEmojiClick} />
+                                            </div>
+                                        )}
                                     </form>
                                 </div>
                             </footer>
