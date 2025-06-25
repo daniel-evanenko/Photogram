@@ -1,6 +1,8 @@
 import { storyService } from '../../services/story/story.service.local.js'
+import { userService } from '../../services/user/user.service.local.js'
+import { makeId } from '../../services/util.service.js'
 import { Comment, Story } from '../../types/types.js'
-import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction, SetActivePicker, SET_ACTIVE_PICKER, AddComment, ADD_COMMENT } from '../reducers/story.reducer.js'
+import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction, SetActivePicker, SET_ACTIVE_PICKER, AddComment, ADD_COMMENT, AddCommentFailure, ADD_COMMENT_FAILURE } from '../reducers/story.reducer.js'
 import { store } from '../store.js'
 
 
@@ -84,15 +86,36 @@ export function toggleEmojiPicker(storyId: string) {
 }
 
 export async function addComent(storyId: string, comment: string) {
+    const loggedinUser = userService.getLoggedinUser()
+    if (!loggedinUser) throw new Error('Cannot add comment, no user logged in')
+    const newComment: Comment = {
+        id: makeId(),
+        by: {
+            _id: loggedinUser._id,
+            fullname: loggedinUser.fullname,
+            imgUrl: loggedinUser.imgUrl,
+        },
+        txt: comment,
+        createdAt: new Date().toISOString(),
+        likedBy: [],
+    }
     try {
-        const newComment: Comment = await storyService.addComment(storyId, comment)
+        storyService.addComment(storyId, newComment)
         store.dispatch(getCmdAddComment(storyId, newComment))
     } catch (err) {
+        store.dispatch(getCmdAddCommentFailure(storyId, newComment.id))
         console.error('Cannot add comment:', err);
     }
 }
 
 // Command Creators:
+function getCmdAddCommentFailure(storyId: string, commentId: string): AddCommentFailure {
+    return {
+        type: ADD_COMMENT_FAILURE,
+        storyId,
+        commentId
+    };
+}
 function getCmdAddComment(storyId: string, comment: Comment): AddComment {
     return {
         type: ADD_COMMENT,

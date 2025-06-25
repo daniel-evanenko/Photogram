@@ -67,25 +67,12 @@ async function save(story: { _id: any; txt: any; imgUrl: any }) {
     return savedstory
 }
 
-async function addComment(storyId: string, txt: string) {
-    const loggedinUser = userService.getLoggedinUser()
-    if (!loggedinUser) throw new Error('Cannot add comment, no user logged in')
-    const newComment: Comment = {
-        id: makeId(),
-        by: {
-            _id: loggedinUser._id,
-            fullname: loggedinUser.fullname,
-            imgUrl: loggedinUser.imgUrl,
-        },
-        txt,
-        createdAt: new Date().toISOString(),
-        likedBy: [],
-    }
+async function addComment(storyId: string, comment: Comment) {
+
     try {
         const story: Story = await getById(storyId)
-        story.comments.push(newComment)
+        story.comments.push(comment)
         await storageService.put(STORAGE_KEY, story)
-        return newComment
     } catch (err) {
         console.error('Failed to add comment in local service:', err)
         throw err

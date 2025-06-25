@@ -1,28 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../store/store';
-import { addComent, clearStory, loadStory, toggleEmojiPicker } from '../store/actions/story.actions';
+import { clearStory, loadStory } from '../store/actions/story.actions';
 import { UserSuggestion } from '../cmps/UserSuggestion';
 import { ReactSVG } from 'react-svg';
 import { formatTimeAgo } from '../services/util.service';
 import { CommentItem } from '../cmps/CommentItem';
-import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
-import EmojiPicker from 'emoji-picker-react';
-import { useForm } from '../customHooks/useForm';
+
 import LoadingCircle from '../cmps/LoadingCircle';
+import { AddCommentForm } from '../cmps/AddCommentForm';
 
 
 export function StoryDetailsModal() {
     const story = useSelector((storeState: RootState) => storeState.storyModule.story);
     const isLoading = useSelector((storeState: RootState) => storeState.storyModule.isLoading);
-    const activePickerId = useSelector((storeState: RootState) => storeState.storyModule.activePickerId);
     const loggedInUser = useSelector((storeState: RootState) => storeState.userModule.loggedInUser);
 
     const navigate = useNavigate();
-    const { storyId = '' } = useParams();
-    const [newComment, setNewComment, handleChange] = useForm({ txt: '' });
-    const isPickerOpen = activePickerId === story?._id;
+    const { storyId = '' } = useParams<{ storyId: string }>();
 
     useEffect(() => {
         if (storyId) {
@@ -38,21 +34,11 @@ export function StoryDetailsModal() {
         navigate('/');
     };
 
-    const onAddComment = (ev: React.FormEvent) => {
-        ev.preventDefault();
-        if (!newComment.txt) return;
-        setNewComment({ txt: '' });
-        addComent(storyId, newComment.txt)
-
-        toggleEmojiPicker('')
-    };
     function moreOptionClicked() {
         console.log('moreOptionClicked')
     }
 
-    const onEmojiClick = (emojiObject: { emoji: string; }) => {
-        setNewComment((prevComment: { txt: string; }) => ({ ...prevComment, txt: prevComment.txt + emojiObject.emoji }));
-    };
+
 
 
     const { comments = [], likedBy = [] } = story || {};
@@ -100,30 +86,7 @@ export function StoryDetailsModal() {
 
 
                                 <div className='comments'>
-                                    <form className="comments-form" onSubmit={onAddComment}>
-                                        <button
-                                            type="button"
-                                            className="emoji-button"
-                                            onClick={() => toggleEmojiPicker(story._id)}
-                                        >
-                                            <SentimentSatisfiedOutlinedIcon sx={{ width: 24, height: 24, color: '#737373' }} />
-                                        </button>
-                                        <div className="input-container">
-                                            <input
-                                                type="text"
-                                                placeholder="Add a comment..."
-                                                name="txt"
-                                                value={newComment.txt}
-                                                onChange={handleChange}
-                                            />
-                                            <button type="submit" className="input-button">Post</button>
-                                        </div>
-                                        {isPickerOpen && (
-                                            <div className="emoji-picker-wrapper">
-                                                <EmojiPicker onEmojiClick={onEmojiClick} />
-                                            </div>
-                                        )}
-                                    </form>
+                                    <AddCommentForm storyId={storyId}></AddCommentForm>
                                 </div>
                             </footer>
                         </div>

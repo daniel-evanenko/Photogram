@@ -9,6 +9,7 @@ export const UPDATE_STORY = 'UPDATE_STORY';
 export const SET_IS_LOADING = 'SET_IS_LOADING';
 export const SET_ACTIVE_PICKER = 'SET_ACTIVE_PICKER';
 export const ADD_COMMENT = 'ADD_COMMENT';
+export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
 // --- State Interface ---
 export interface StoryState {
@@ -37,9 +38,10 @@ export interface UpdateStoryAction { type: typeof UPDATE_STORY; story: Story }
 export interface SetIsLoadingAction { type: typeof SET_IS_LOADING; isLoading: boolean }
 export interface SetActivePicker { type: typeof SET_ACTIVE_PICKER; storyId: string | null }
 export interface AddComment { type: typeof ADD_COMMENT; storyId: string, comment: Comment }
+export interface AddCommentFailure { type: typeof ADD_COMMENT_FAILURE; storyId: string, commentId: string }
 
 // Union type for all possible story actions.
-type StoryAction = SetStoriesAction | SetStoryAction | RemoveStoryAction | AddStoryAction | UpdateStoryAction | SetIsLoadingAction | SetActivePicker | AddComment;
+type StoryAction = SetStoriesAction | SetStoryAction | RemoveStoryAction | AddStoryAction | UpdateStoryAction | SetIsLoadingAction | SetActivePicker | AddComment | AddCommentFailure;
 
 
 // --- Reducer Function ---
@@ -83,8 +85,6 @@ export function storyReducer(state: StoryState = initialState, action: StoryActi
                 activePickerId: action.storyId,
             };
         case ADD_COMMENT:
-            console.log("🚀 ~ storyReducer ~ ADD_COMMENT:", 'here')
-            
             return {
                 ...state,
                 stories: state.stories.map(s =>
@@ -97,6 +97,19 @@ export function storyReducer(state: StoryState = initialState, action: StoryActi
                     ? { ...state.story, comments: [...state.story.comments, action.comment] }
                     : state.story,
             };
+        case ADD_COMMENT_FAILURE:
+            return {
+                ...state,
+                stories: state.stories.map(s =>
+                    s._id === action.storyId
+                        ? { ...s, comments: s.comments.filter(c => c.id !== action.commentId) }
+                        : s
+                ),
+                story: state.story?._id === action.storyId
+                    ? { ...state.story, comments: state.story.comments.filter(c => c.id !== action.commentId) }
+                    : state.story
+            }
+
         default:
             // If the action doesn't match, return the existing state without changes.
             return state;
