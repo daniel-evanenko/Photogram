@@ -1,6 +1,6 @@
 import { storyService } from '../../services/story/story.service.local.js'
-import { Story } from '../../types/types.js'
-import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction, SetActivePicker, SET_ACTIVE_PICKER } from '../reducers/story.reducer.js'
+import { Comment, Story } from '../../types/types.js'
+import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction, SetActivePicker, SET_ACTIVE_PICKER, AddComment, ADD_COMMENT } from '../reducers/story.reducer.js'
 import { store } from '../store.js'
 
 
@@ -83,8 +83,23 @@ export function toggleEmojiPicker(storyId: string) {
     }
 }
 
-// Command Creators:
+export async function addComent(storyId: string, comment: string) {
+    try {
+        const newComment: Comment = await storyService.addComment(storyId, comment)
+        store.dispatch(getCmdAddComment(storyId, newComment))
+    } catch (err) {
+        console.error('Cannot add comment:', err);
+    }
+}
 
+// Command Creators:
+function getCmdAddComment(storyId: string, comment: Comment): AddComment {
+    return {
+        type: ADD_COMMENT,
+        storyId,
+        comment
+    };
+}
 function getCmdSetActivePicker(storyId: string | null): SetActivePicker {
     return {
         type: SET_ACTIVE_PICKER,

@@ -1,9 +1,9 @@
 import { Avatar } from '@mui/material';
 import React, { ReactNode } from 'react';
 import { ReactSVG } from 'react-svg';
-import { User } from '../types/types';
+import { MiniUser } from '../types/types';
 interface Props {
-    user: User;
+    user: MiniUser;
     text: string | ReactNode;
     timestamp: string;
     onMoreActionClick?: () => void;

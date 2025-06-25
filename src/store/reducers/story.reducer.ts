@@ -1,4 +1,4 @@
-import { Story } from "../../types/types";
+import { Comment, Story } from "../../types/types";
 
 // --- Action Types ---
 export const SET_STORIES = 'SET_STORIES';
@@ -8,6 +8,7 @@ export const ADD_STORY = 'ADD_STORY';
 export const UPDATE_STORY = 'UPDATE_STORY';
 export const SET_IS_LOADING = 'SET_IS_LOADING';
 export const SET_ACTIVE_PICKER = 'SET_ACTIVE_PICKER';
+export const ADD_COMMENT = 'ADD_COMMENT';
 
 // --- State Interface ---
 export interface StoryState {
@@ -35,9 +36,10 @@ export interface AddStoryAction { type: typeof ADD_STORY; story: Story }
 export interface UpdateStoryAction { type: typeof UPDATE_STORY; story: Story }
 export interface SetIsLoadingAction { type: typeof SET_IS_LOADING; isLoading: boolean }
 export interface SetActivePicker { type: typeof SET_ACTIVE_PICKER; storyId: string | null }
+export interface AddComment { type: typeof ADD_COMMENT; storyId: string, comment: Comment }
 
 // Union type for all possible story actions.
-type StoryAction = SetStoriesAction | SetStoryAction | RemoveStoryAction | AddStoryAction | UpdateStoryAction | SetIsLoadingAction | SetActivePicker;
+type StoryAction = SetStoriesAction | SetStoryAction | RemoveStoryAction | AddStoryAction | UpdateStoryAction | SetIsLoadingAction | SetActivePicker | AddComment;
 
 
 // --- Reducer Function ---
@@ -79,6 +81,21 @@ export function storyReducer(state: StoryState = initialState, action: StoryActi
             return {
                 ...state,
                 activePickerId: action.storyId,
+            };
+        case ADD_COMMENT:
+            console.log("🚀 ~ storyReducer ~ ADD_COMMENT:", 'here')
+            
+            return {
+                ...state,
+                stories: state.stories.map(s =>
+                    s._id === action.storyId
+                        ? { ...s, comments: [...s.comments, action.comment] }
+                        : s
+                ),
+
+                story: state.story?._id === action.storyId
+                    ? { ...state.story, comments: [...state.story.comments, action.comment] }
+                    : state.story,
             };
         default:
             // If the action doesn't match, return the existing state without changes.

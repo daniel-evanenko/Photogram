@@ -2,6 +2,7 @@
 import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, makeId, saveToStorage } from '../util.service'
 import { userService } from '../user/index.js'
+import { Comment, Story } from '../../types/types.js'
 
 const STORAGE_KEY = 'story'
 _fetchStories()
@@ -11,6 +12,7 @@ export const storyService = {
     getById,
     save,
     remove,
+    addComment
 }
 window.cs = storyService
 
@@ -63,4 +65,29 @@ async function save(story: { _id: any; txt: any; imgUrl: any }) {
         savedstory = await storageService.post(STORAGE_KEY, storyToSave)
     }
     return savedstory
+}
+
+async function addComment(storyId: string, txt: string) {
+    const loggedinUser = userService.getLoggedinUser()
+    if (!loggedinUser) throw new Error('Cannot add comment, no user logged in')
+    const newComment: Comment = {
+        id: makeId(),
+        by: {
+            _id: loggedinUser._id,
+            fullname: loggedinUser.fullname,
+            imgUrl: loggedinUser.imgUrl,
+        },
+        txt,
+        createdAt: new Date().toISOString(),
+        likedBy: [],
+    }
+    try {
+        const story: Story = await getById(storyId)
+        story.comments.push(newComment)
+        await storageService.put(STORAGE_KEY, story)
+        return newComment
+    } catch (err) {
+        console.error('Failed to add comment in local service:', err)
+        throw err
+    }
 }

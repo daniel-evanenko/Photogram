@@ -27,7 +27,7 @@ export interface Location {
 /** A comment on a story */
 export interface Comment {
     id: string;
-    by: User;
+    by: MiniUser;
     txt: string;
     createdAt: string;
     /** Who liked this comment (optional) */
