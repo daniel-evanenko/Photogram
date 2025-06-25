@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../store/store';
-import { clearStory, loadStory } from '../store/actions/story.actions';
+import { clearStory, loadStory, removeComment } from '../store/actions/story.actions';
 import { UserSuggestion } from '../cmps/UserSuggestion';
 import { ReactSVG } from 'react-svg';
 import { formatTimeAgo } from '../services/util.service';
@@ -10,6 +10,7 @@ import { CommentItem } from '../cmps/CommentItem';
 
 import LoadingCircle from '../cmps/LoadingCircle';
 import { AddCommentForm } from '../cmps/AddCommentForm';
+import { Comment } from '../types/types';
 
 
 export function StoryDetailsModal() {
@@ -34,8 +35,8 @@ export function StoryDetailsModal() {
         navigate('/');
     };
 
-    function moreOptionClicked() {
-        console.log('moreOptionClicked')
+    function moreOptionClicked(comment: Comment) {
+        removeComment(storyId, comment)
     }
 
 
@@ -65,7 +66,8 @@ export function StoryDetailsModal() {
                                 <ul>
                                     {comments.map(c => <li>
                                         {
-                                            <CommentItem key={c.id} user={c.by} text={c.txt} timestamp={formatTimeAgo(c.createdAt, false)}></CommentItem>
+                                            <CommentItem key={c.id} user={c.by} text={c.txt} timestamp={formatTimeAgo(c.createdAt, false)} onMoreActionClick={() => moreOptionClicked(c)}
+                                            ></CommentItem>
                                         }
                                     </li>)}
                                 </ul>

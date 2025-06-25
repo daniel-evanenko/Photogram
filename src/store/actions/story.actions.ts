@@ -2,7 +2,7 @@ import { storyService } from '../../services/story/story.service.local.js'
 import { userService } from '../../services/user/user.service.local.js'
 import { makeId } from '../../services/util.service.js'
 import { Comment, Story } from '../../types/types.js'
-import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction, SetActivePicker, SET_ACTIVE_PICKER, AddComment, ADD_COMMENT, AddCommentFailure, ADD_COMMENT_FAILURE } from '../reducers/story.reducer.js'
+import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction, SetActivePicker, SET_ACTIVE_PICKER, AddComment, ADD_COMMENT, AddCommentFailure, ADD_COMMENT_FAILURE, RemoveComment, REMOVE_COMMENT } from '../reducers/story.reducer.js'
 import { store } from '../store.js'
 
 
@@ -108,7 +108,27 @@ export async function addComent(storyId: string, comment: string) {
     }
 }
 
+
+export async function removeComment(storyId: string, comment: Comment) {
+    try {
+        store.dispatch(getCmdRemoveComment(storyId, comment.id))
+        await storyService.removeComment(storyId, comment.id)
+    } catch (err) {
+        store.dispatch(getCmdAddComment(storyId, comment))
+
+        console.error('Cannot remove comment:', err);
+    }
+}
 // Command Creators:
+
+function getCmdRemoveComment(storyId: string, commentId: string): RemoveComment {
+    return {
+        type: REMOVE_COMMENT,
+        storyId,
+        commentId
+    };
+}
+
 function getCmdAddCommentFailure(storyId: string, commentId: string): AddCommentFailure {
     return {
         type: ADD_COMMENT_FAILURE,

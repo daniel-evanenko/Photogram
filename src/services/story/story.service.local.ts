@@ -12,7 +12,8 @@ export const storyService = {
     getById,
     save,
     remove,
-    addComment
+    addComment,
+    removeComment
 }
 window.cs = storyService
 
@@ -75,6 +76,16 @@ async function addComment(storyId: string, comment: Comment) {
         await storageService.put(STORAGE_KEY, storyToUpdate)
     } catch (err) {
         console.error('Failed to add comment in local service:', err)
+        throw err
+    }
+}
+async function removeComment(storyId: string, commentId: string) {
+    try {
+        const storyToUpdate: Story = await getById(storyId)
+        storyToUpdate.comments = storyToUpdate.comments.filter(c => c.id !== commentId)
+        await storageService.put(STORAGE_KEY, storyToUpdate)
+    } catch (err) {
+        console.error('Failed to remove comment in local service:', err)
         throw err
     }
 }
