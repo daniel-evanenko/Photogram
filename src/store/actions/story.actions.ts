@@ -100,8 +100,8 @@ export async function addComent(storyId: string, comment: string) {
         likedBy: [],
     }
     try {
-        storyService.addComment(storyId, newComment)
         store.dispatch(getCmdAddComment(storyId, newComment))
+        await storyService.addComment(storyId, newComment)
     } catch (err) {
         store.dispatch(getCmdAddCommentFailure(storyId, newComment.id))
         console.error('Cannot add comment:', err);

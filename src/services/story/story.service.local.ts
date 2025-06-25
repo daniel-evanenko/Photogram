@@ -70,9 +70,9 @@ async function save(story: { _id: any; txt: any; imgUrl: any }) {
 async function addComment(storyId: string, comment: Comment) {
 
     try {
-        const story: Story = await getById(storyId)
-        story.comments.push(comment)
-        await storageService.put(STORAGE_KEY, story)
+        const storyToUpdate: Story = await getById(storyId)
+        storyToUpdate.comments = [comment, ...storyToUpdate.comments]
+        await storageService.put(STORAGE_KEY, storyToUpdate)
     } catch (err) {
         console.error('Failed to add comment in local service:', err)
         throw err

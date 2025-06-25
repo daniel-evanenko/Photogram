@@ -89,12 +89,12 @@ export function storyReducer(state: StoryState = initialState, action: StoryActi
                 ...state,
                 stories: state.stories.map(s =>
                     s._id === action.storyId
-                        ? { ...s, comments: [...s.comments, action.comment] }
+                        ? { ...s, comments: [action.comment, ...s.comments] }
                         : s
                 ),
 
                 story: state.story?._id === action.storyId
-                    ? { ...state.story, comments: [...state.story.comments, action.comment] }
+                    ? { ...state.story, comments: [action.comment, ...state.story.comments] }
                     : state.story,
             };
         case ADD_COMMENT_FAILURE:
