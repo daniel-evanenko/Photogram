@@ -54,9 +54,9 @@ export async function removeStory(storyId: string) {
 
 export async function addStory(story: Story) {
     try {
-        const savedCar = await storyService.save(story)
-        store.dispatch(getCmdAddStory(savedCar))
-        return savedCar
+        const savedStory = await storyService.save(story)
+        store.dispatch(getCmdAddStory(savedStory))
+        return savedStory
     } catch (err) {
         console.log('Cannot add story', err)
         throw err
@@ -65,9 +65,9 @@ export async function addStory(story: Story) {
 
 export async function updateStory(story: Story) {
     try {
-        const savedCar = await storyService.save(story)
-        store.dispatch(getCmdUpdateStory(savedCar))
-        return savedCar
+        const savedStory = await storyService.save(story)
+        store.dispatch(getCmdUpdateStory(savedStory))
+        return savedStory
     } catch (err) {
         console.log('Cannot save story', err)
         throw err

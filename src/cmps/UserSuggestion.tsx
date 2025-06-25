@@ -2,7 +2,7 @@ import { Avatar } from "@mui/material";
 import React, { ReactNode } from "react";
 
 interface Props {
-    username: string;
+    username: string | undefined;
     subtext?: string | ReactNode;
     actionText?: string | ReactNode;
     onActionClick?: () => void;

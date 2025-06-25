@@ -7,7 +7,7 @@ import { SET_USER } from '../reducers/user.reducer'
 
 
 
-export async function login(credentials) {
+export async function login(credentials: any) {
     try {
         const user = await userService.login(credentials)
         store.dispatch({
@@ -22,14 +22,14 @@ export async function login(credentials) {
     }
 }
 
-export async function signup(credentials) {
+export async function signup(credentials: any) {
     try {
         const user = await userService.signup(credentials)
         store.dispatch({
             type: SET_USER,
             user
         })
-        socketService.login(user._id)
+        // socketService.login(user._id)
         return user
     } catch (err) {
         console.log('Cannot signup', err)

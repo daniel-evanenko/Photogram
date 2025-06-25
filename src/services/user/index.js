@@ -17,7 +17,7 @@ function getEmptyUser() {
 }
 
 const service = VITE_LOCAL === 'true' ? local : remote
-export const userService = { ...service, getEmptyUser }
+export const userService = { getEmptyUser, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local

@@ -1,3 +1,4 @@
+import { MiniUser, User } from '../../types/types'
 import { httpService } from '../http.service'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
@@ -18,12 +19,12 @@ function getUsers() {
 	return httpService.get(`user`)
 }
 
-async function getById(userId) {
+async function getById(userId: string) {
 	const user = await httpService.get(`user/${userId}`)
 	return user
 }
 
-function remove(userId) {
+function remove(userId: string) {
 	return httpService.delete(`user/${userId}`)
 }
 async function update({ _id, imgUrl, bio }) {
@@ -36,12 +37,12 @@ async function update({ _id, imgUrl, bio }) {
 	return user
 }
 
-async function login(userCred) {
+async function login(userCred: User) {
 	const user = await httpService.post('auth/login', userCred)
 	if (user) return saveLoggedinUser(user)
 }
 
-async function signup(userCred) {
+async function signup(userCred: User) {
 	if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
 	const user = await httpService.post('auth/signup', userCred)
 	return saveLoggedinUser(user)
@@ -56,7 +57,7 @@ function getLoggedinUser() {
 	return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
-function saveLoggedinUser(user) {
+function saveLoggedinUser(user: MiniUser) {
 	user = {
 		_id: user._id,
 		fullname: user.fullname,

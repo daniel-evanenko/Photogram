@@ -1,7 +1,10 @@
 import React from "react";
 import { UserSuggestion } from "./UserSuggestion";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 export function SuggestionsSidebar() {
+    const loggedInUser = useSelector((storeState: RootState) => storeState.userModule.loggedInUser);
     const suggestions = [
         {
             username: "pop_juice_haifa",
@@ -38,9 +41,9 @@ export function SuggestionsSidebar() {
     return (
         <div className="suggestions-sidebar">
             <UserSuggestion
-                username="daniel__evanenko"
-                subtext="Daniel Evanenko"
-                imgUrl="/avatars/daniel.jpg"
+                username={loggedInUser?.username}
+                subtext={loggedInUser?.fullname}
+                imgUrl={loggedInUser?.imgUrl}
                 actionText="Switch"
             />
 

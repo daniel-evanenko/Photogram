@@ -1,5 +1,5 @@
+import { User } from '../../types/types'
 import { storageService } from '../async-storage.service'
-
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
 export const userService = {
@@ -15,18 +15,18 @@ export const userService = {
 }
 
 async function getUsers() {
-    const users = await storageService.query('user')
-    return users.map(user => {
+    const users: User[] = await storageService.query('user')
+    return users.map((user) => {
         delete user.password
         return user
     })
 }
 
-async function getById(userId) {
+async function getById(userId: string) {
     return await storageService.get('user', userId)
 }
 
-function remove(userId) {
+function remove(userId: string) {
     return storageService.remove('user', userId)
 }
 
@@ -43,14 +43,14 @@ async function update({ _id, imgUrl, bio }) {
     return user
 }
 
-async function login(userCred) {
+async function login(userCred: User) {
     const users = await storageService.query('user')
-    const user = users.find(user => user.username === userCred.username)
+    const user = users.find((user: User) => user.username === userCred.username)
 
     if (user) return saveLoggedinUser(user)
 }
 
-async function signup(userCred) {
+async function signup(userCred: User) {
     if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
     const user = await storageService.post('user', userCred)
     return saveLoggedinUser(user)
@@ -64,12 +64,13 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
-function saveLoggedinUser(user) {
-    user = {
-        _id: user._id,
-        fullname: user.fullname,
-        imgUrl: user.imgUrl,
-    }
+function saveLoggedinUser(user: User) {
+    // user = {
+    //     _id: user._id,
+    //     fullname: user.fullname,
+    //     imgUrl: user.imgUrl,
+    // }
+    delete user.password
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }

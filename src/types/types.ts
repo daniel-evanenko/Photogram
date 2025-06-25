@@ -4,8 +4,19 @@ export interface User {
     _id: string;
     fullname: string;
     imgUrl: string;
+    username: string;
+    password?: string;
+    following: [];
+    followers: [];
+    likedStoryIds: [];
+    savedStoryIds: [];
 }
 
+export interface MiniUser {
+    _id: string;
+    fullname: string;
+    imgUrl: string;
+}
 /** Geolocation information */
 export interface Location {
     lat: number;
