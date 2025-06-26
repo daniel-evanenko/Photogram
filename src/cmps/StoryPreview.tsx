@@ -2,22 +2,38 @@ import { Avatar } from "@mui/material";
 import { ReactSVG } from "react-svg";
 import { formatTimeAgo } from "../services/util.service";
 import { StoryDescription } from "./StoryDescription";
-import { Story } from "../types/types";
+import { DropdownItem, Story } from "../types/types";
 import React, { useState } from "react";
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import { Link } from "react-router-dom";
 import { useForm } from "../customHooks/useForm";
 import EmojiPicker from "emoji-picker-react";
-import { toggleEmojiPicker } from "../store/actions/story.actions";
+import { removeStory, toggleDropdownOptions, toggleEmojiPicker } from "../store/actions/story.actions";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { DropdownOptions } from "./DropdownOptions";
 
 export function StoryPreview({ story }: { story: Story }) {
     const activePickerId = useSelector((storeState: RootState) => storeState.storyModule.activePickerId);
+    const activeDropdownId = useSelector((storeState: RootState) => storeState.storyModule.activeDropdownId);
+    const loggedInUser = useSelector((storeState: RootState) => storeState.userModule.loggedInUser);
+
     const [newComment, setNewComment, handleChange] = useForm({ txt: '' });
     const likes = story.likedBy.length;
     const comments = story.comments.length;
     const isPickerOpen = activePickerId === story?._id;
+    const isDropdownOpen = activeDropdownId === story?._id;
+    const isOwner = loggedInUser?._id === story.by._id;
+
+    const options: DropdownItem[] = isOwner
+        ? [
+            { label: 'Delete', action: () => (removeStory(story._id)), style: 'danger' },
+            { label: 'Edit', action: () => console.log('Editing story...') }
+        ]
+        : [
+            { label: 'Report', action: () => console.log('Reporting story...'), style: 'danger' },
+            { label: 'Unfollow', action: () => console.log('Unfollowing user...') }
+        ];
 
     const onAddComment = (ev: React.FormEvent) => {
         ev.preventDefault();
@@ -26,7 +42,7 @@ export function StoryPreview({ story }: { story: Story }) {
         toggleEmojiPicker(story._id)
     };
     function moreOptionClicked() {
-        console.log('moreOptionClicked')
+        toggleDropdownOptions(story?._id)
     }
 
     const onEmojiClick = (emojiObject: { emoji: string; }) => {
@@ -43,7 +59,7 @@ export function StoryPreview({ story }: { story: Story }) {
                     </div>
                 </div>
                 <button className="icon-button" aria-label="More options">
-                    <ReactSVG src="/icons/more.svg" />
+                    <ReactSVG onClick={moreOptionClicked} src="/icons/more.svg" />
                 </button>
             </header>
 
@@ -104,6 +120,10 @@ export function StoryPreview({ story }: { story: Story }) {
                             <div className="emoji-picker-wrapper">
                                 <EmojiPicker onEmojiClick={onEmojiClick} />
                             </div>
+                        )}
+                        {isDropdownOpen && (
+                            <DropdownOptions options={options} handleClose={moreOptionClicked}></DropdownOptions>
+
                         )}
                     </form>
 

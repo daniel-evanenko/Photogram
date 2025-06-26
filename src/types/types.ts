@@ -17,6 +17,17 @@ export interface MiniUser {
     fullname: string;
     imgUrl: string;
 }
+
+/** A dropdown option item */
+
+export interface DropdownItem {
+    label: string;
+    action: () => void;
+    style?: 'danger' | 'default';
+
+}
+
+
 /** Geolocation information */
 export interface Location {
     lat: number;

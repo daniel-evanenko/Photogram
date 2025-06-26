@@ -2,7 +2,7 @@ import { storyService } from '../../services/story/story.service.local.js'
 import { userService } from '../../services/user/user.service.local.js'
 import { makeId } from '../../services/util.service.js'
 import { Comment, Story } from '../../types/types.js'
-import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction, SetActivePicker, SET_ACTIVE_PICKER, AddComment, ADD_COMMENT, AddCommentFailure, ADD_COMMENT_FAILURE, RemoveComment, REMOVE_COMMENT } from '../reducers/story.reducer.js'
+import { SET_STORIES, SET_STORY, REMOVE_STORY, ADD_STORY, UPDATE_STORY, SET_IS_LOADING, SetIsLoadingAction, SetStoriesAction, SetStoryAction, RemoveStoryAction, AddStoryAction, UpdateStoryAction, SetActivePicker, SET_ACTIVE_PICKER, AddComment, ADD_COMMENT, AddCommentFailure, ADD_COMMENT_FAILURE, RemoveComment, REMOVE_COMMENT, SetActiveDropdown, SET_ACTIVE_DROPDOWN } from '../reducers/story.reducer.js'
 import { store } from '../store.js'
 
 
@@ -84,7 +84,15 @@ export function toggleEmojiPicker(storyId: string) {
         console.log('Cannot toggle emoji picker', err)
     }
 }
-
+export function toggleDropdownOptions(storyId: string) {
+    try {
+        const { activeDropdownId } = store.getState().storyModule;
+        const newActiveId = activeDropdownId === storyId ? null : storyId;
+        store.dispatch(getCmdSetActiveDropdown(newActiveId))
+    } catch (err) {
+        console.log('Cannot toggle dropdown options', err)
+    }
+}
 export async function addComent(storyId: string, comment: string) {
     const loggedinUser = userService.getLoggedinUser()
     if (!loggedinUser) throw new Error('Cannot add comment, no user logged in')
@@ -146,6 +154,12 @@ function getCmdAddComment(storyId: string, comment: Comment): AddComment {
 function getCmdSetActivePicker(storyId: string | null): SetActivePicker {
     return {
         type: SET_ACTIVE_PICKER,
+        storyId
+    };
+}
+function getCmdSetActiveDropdown(storyId: string | null): SetActiveDropdown {
+    return {
+        type: SET_ACTIVE_DROPDOWN,
         storyId
     };
 }

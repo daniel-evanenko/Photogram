@@ -8,6 +8,7 @@ export const ADD_STORY = 'ADD_STORY';
 export const UPDATE_STORY = 'UPDATE_STORY';
 export const SET_IS_LOADING = 'SET_IS_LOADING';
 export const SET_ACTIVE_PICKER = 'SET_ACTIVE_PICKER';
+export const SET_ACTIVE_DROPDOWN = 'SET_ACTIVE_DROPDOWN';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
@@ -18,6 +19,7 @@ export interface StoryState {
     story: Story | null;
     isLoading: boolean;
     activePickerId: string | null;
+    activeDropdownId: string | null;
 
 }
 
@@ -26,7 +28,8 @@ const initialState: StoryState = {
     stories: [],
     story: null,
     isLoading: false,
-    activePickerId: null
+    activePickerId: null,
+    activeDropdownId: null
 
 };
 
@@ -41,9 +44,11 @@ export interface SetActivePicker { type: typeof SET_ACTIVE_PICKER; storyId: stri
 export interface AddComment { type: typeof ADD_COMMENT; storyId: string, comment: Comment }
 export interface RemoveComment { type: typeof REMOVE_COMMENT; storyId: string, commentId: string }
 export interface AddCommentFailure { type: typeof ADD_COMMENT_FAILURE; storyId: string, commentId: string }
+export interface SetActiveDropdown { type: typeof SET_ACTIVE_DROPDOWN; storyId: string | null }
 
 // Union type for all possible story actions.
-type StoryAction = SetStoriesAction | SetStoryAction | RemoveStoryAction | AddStoryAction | UpdateStoryAction | SetIsLoadingAction | SetActivePicker | AddComment | AddCommentFailure | RemoveComment;
+type StoryAction = SetStoriesAction | SetStoryAction | RemoveStoryAction | AddStoryAction | UpdateStoryAction
+    | SetIsLoadingAction | SetActivePicker | AddComment | AddCommentFailure | RemoveComment | SetActiveDropdown;
 
 
 // --- Reducer Function ---
@@ -85,6 +90,11 @@ export function storyReducer(state: StoryState = initialState, action: StoryActi
             return {
                 ...state,
                 activePickerId: action.storyId,
+            };
+        case SET_ACTIVE_DROPDOWN:
+            return {
+                ...state,
+                activeDropdownId: action.storyId,
             };
         case ADD_COMMENT:
             return {
