@@ -3,27 +3,29 @@ import { ReactSVG } from "react-svg";
 import { formatTimeAgo } from "../services/util.service";
 import { StoryDescription } from "./StoryDescription";
 import { DropdownItem, Story } from "../types/types";
-import React, { useState } from "react";
+import React from "react";
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import { Link } from "react-router-dom";
 import { useForm } from "../customHooks/useForm";
 import EmojiPicker from "emoji-picker-react";
-import { removeStory, toggleDropdownOptions, toggleEmojiPicker } from "../store/actions/story.actions";
+import { removeStory, toggleEmojiPicker } from "../store/actions/story.actions";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { DropdownOptions } from "./DropdownOptions";
+import { useDropdown } from "../customHooks/useDropdown";
 
 export function StoryPreview({ story }: { story: Story }) {
     const activePickerId = useSelector((storeState: RootState) => storeState.storyModule.activePickerId);
-    const activeDropdownId = useSelector((storeState: RootState) => storeState.storyModule.activeDropdownId);
     const loggedInUser = useSelector((storeState: RootState) => storeState.userModule.loggedInUser);
 
     const [newComment, setNewComment, handleChange] = useForm({ txt: '' });
     const likes = story.likedBy.length;
     const comments = story.comments.length;
     const isPickerOpen = activePickerId === story?._id;
-    const isDropdownOpen = activeDropdownId === story?._id;
     const isOwner = loggedInUser?._id === story.by._id;
+
+    const { isDropdownOpen, handleToggleDropdown } = useDropdown(story._id);
+
 
     const options: DropdownItem[] = isOwner
         ? [
@@ -41,9 +43,6 @@ export function StoryPreview({ story }: { story: Story }) {
         setNewComment({ txt: '' });
         toggleEmojiPicker(story._id)
     };
-    function moreOptionClicked() {
-        toggleDropdownOptions(story?._id)
-    }
 
     const onEmojiClick = (emojiObject: { emoji: string; }) => {
         setNewComment((prevComment: { txt: string; }) => ({ ...prevComment, txt: prevComment.txt + emojiObject.emoji }));
@@ -59,7 +58,7 @@ export function StoryPreview({ story }: { story: Story }) {
                     </div>
                 </div>
                 <button className="icon-button" aria-label="More options">
-                    <ReactSVG onClick={moreOptionClicked} src="/icons/more.svg" />
+                    <ReactSVG onClick={handleToggleDropdown} src="/icons/more.svg" />
                 </button>
             </header>
 
@@ -122,7 +121,7 @@ export function StoryPreview({ story }: { story: Story }) {
                             </div>
                         )}
                         {isDropdownOpen && (
-                            <DropdownOptions options={options} handleClose={moreOptionClicked}></DropdownOptions>
+                            <DropdownOptions options={options} handleClose={handleToggleDropdown}></DropdownOptions>
 
                         )}
                     </form>
