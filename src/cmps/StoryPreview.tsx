@@ -4,15 +4,13 @@ import { formatTimeAgo } from "../services/util.service";
 import { StoryDescription } from "./StoryDescription";
 import { DropdownItem, Story } from "../types/types";
 import React from "react";
-import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import { Link } from "react-router-dom";
 import { useForm } from "../customHooks/useForm";
-import EmojiPicker from "emoji-picker-react";
 import { removeStory, toggleEmojiPicker } from "../store/actions/story.actions";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { DropdownOptions } from "./DropdownOptions";
 import { useDropdown } from "../customHooks/useDropdown";
+import { AddCommentForm } from "./AddCommentForm";
 
 export function StoryPreview({ story }: { story: Story }) {
     const activePickerId = useSelector((storeState: RootState) => storeState.storyModule.activePickerId);
@@ -97,36 +95,7 @@ export function StoryPreview({ story }: { story: Story }) {
                     <div>
                     </div>
                 </div>
-                <div>
-                    <form className="comments-form" onSubmit={onAddComment}>
-                        <div className="input-container">
-                            <input
-                                type="text"
-                                placeholder="Add a comment..."
-                                name="txt"
-                                value={newComment.txt}
-                                onChange={handleChange}
-                            />
-                            <button type="submit" className="input-button">Post</button>
-                        </div>
-                        <button
-                            type="button"
-                            className="emoji-button"
-                            onClick={() => toggleEmojiPicker(story._id)}>
-                            <SentimentSatisfiedOutlinedIcon sx={{ width: 13, height: 13, color: '#737373' }} />
-                        </button>
-                        {isPickerOpen && (
-                            <div className="emoji-picker-wrapper">
-                                <EmojiPicker onEmojiClick={onEmojiClick} />
-                            </div>
-                        )}
-                        {isDropdownOpen && (
-                            <DropdownOptions options={options} handleClose={handleToggleDropdown}></DropdownOptions>
-
-                        )}
-                    </form>
-
-                </div>
+                <AddCommentForm isPreview={true} storyId={story._id}></AddCommentForm>
             </footer>
         </article>
     );

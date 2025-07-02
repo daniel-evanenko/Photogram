@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React, { useState, useRef } from 'react';
 import SentimentSatisfiedOutlinedIcon from '@mui/icons-material/SentimentSatisfiedOutlined';
 import EmojiPicker, { EmojiClickData } from 'emoji-picker-react';
 import { addComent } from '../store/actions/story.actions';
@@ -7,49 +6,72 @@ import { useForm } from '../customHooks/useForm';
 
 interface AddCommentFormProps {
     storyId: string;
+    isPreview?: boolean;
 }
 
-export function AddCommentForm({ storyId }: AddCommentFormProps) {
-
-    const [newComment, setNewComment, handleChange] = useForm({ txt: '' });
+export function AddCommentForm({ storyId, isPreview = false }: AddCommentFormProps) {
+    const [fields, setFields, handleChange] = useForm({ txt: '' });
     const [showPicker, setShowPicker] = useState(false);
-
+    const inputRef = useRef<HTMLInputElement>(null);
+    const currentComments = []
     const onAddComment = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
-        if (!newComment.txt.trim()) return;
+        const { txt } = fields;
+        if (!txt.trim()) return;
 
-        addComent(storyId, newComment.txt)
-        setNewComment({ txt: '' });
+        addComent(storyId, txt);
+        currentComments.push(txt)
+        setFields({ txt: '' });
+        setShowPicker(false);
     };
 
     const onEmojiClick = (emojiObject: EmojiClickData) => {
-        setNewComment((prevComment: { txt: string; }) => ({ ...prevComment, txt: prevComment.txt + emojiObject.emoji }));
+        const { txt } = fields;
+        setFields({ txt: txt + emojiObject.emoji });
+        inputRef.current?.focus();
     };
+
+    const toggleEmojiPicker = () => {
+        setShowPicker(prevShowPicker => !prevShowPicker);
+    };
+    const iconStyle = {
+        color: '#737373',
+        width: isPreview ? 13 : 24,
+        height: isPreview ? 13 : 24,
+    };
+
+    const emojiButton = (
+        <button
+            type="button"
+            className="emoji-button"
+            aria-label="Add emoji"
+            onClick={toggleEmojiPicker}
+        >
+            <SentimentSatisfiedOutlinedIcon sx={iconStyle} />
+        </button>
+    );
 
     return (
         <form className="comments-form" onSubmit={onAddComment}>
-            <button
-                type="button"
-                className="emoji-button"
-                aria-label="Add emoji"
-                onClick={() => setShowPicker(val => !val)}
-            >
-                <SentimentSatisfiedOutlinedIcon sx={{ width: 24, height: 24, color: '#737373' }} />
-            </button>
+            {!isPreview && emojiButton}
             <div className="input-container">
                 <input
+                    ref={inputRef}
                     type="text"
                     name="txt"
                     placeholder="Add a comment..."
-                    value={newComment.txt}
+                    value={fields.txt}
                     onChange={handleChange}
                     autoComplete="off"
                 />
-                <button type="submit" className="input-button">Post</button>
+                <button type="submit" className="input-button" disabled={!fields.txt.trim()}>
+                    Post
+                </button>
             </div>
+            {isPreview && emojiButton}
             {showPicker && (
                 <div className="emoji-picker-wrapper">
-                    <EmojiPicker onEmojiClick={onEmojiClick} height={350} />
+                    <EmojiPicker onEmojiClick={onEmojiClick}  />
                 </div>
             )}
         </form>
